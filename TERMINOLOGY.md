@@ -1,402 +1,402 @@
-# Spec Kit CN 术语表
+# Spec Kit TW 術語表
 
-本文档定义了Spec Kit CN项目中的标准术语翻译, 确保翻译的一致性和准确性.
+本文件定義了Spec Kit TW專案中的標準術語翻譯, 確保翻譯的一致性和準確性.
 
-## 核心原则
+## 核心原則
 
-1. **专业性**: 使用简洁、准确的技术中文, 避免过度口语化, 保持专业性
-2. **技术术语保留**: 对于国际通用的技术术语, 保持英文原文
-3. **概念翻译**: 对于描述性概念, 使用准确的中文翻译
-4. **品牌一致性**: 保持产品名称和品牌标识的一致性
-5. **用户体验**: 确保翻译后的内容对中文用户友好且易于理解
-
----
-
-## 产品和品牌术语
-
-| 英文 | 中文 | 说明 |
-|------|------|------|
-| Spec Kit | Spec Kit | 不翻译, 保持原品牌名称 |
-| Spec Kit CN | Spec Kit CN | 中文版项目名称 |
-| Specify CLI | Specify CLI | 原版CLI工具名称 |
-| specify-cn | specify-cn | 中文版CLI命令 |
-| GitHub | GitHub | 不翻译, 平台名称 |
-| Claude Code | Claude Code | 不翻译, AI助手名称 |
-| Gemini CLI | Gemini CLI | 不翻译, AI助手名称 |
-| GitHub Copilot | GitHub Copilot | 不翻译, AI助手名称 |
-| Cursor | Cursor | 不翻译, AI助手名称 |
-| cursor-agent | cursor-agent | 不翻译, CLI工具名称 |
-| Qwen Code | Qwen Code | 不翻译, AI助手名称 |
-| opencode | opencode | 不翻译, AI助手名称 |
-| Codex CLI | Codex CLI | 不翻译, AI助手名称 |
-| Windsurf | Windsurf | 不翻译, AI助手名称 |
-| Kilo Code | Kilo Code | 不翻译, AI助手名称 |
-| Auggie CLI | Auggie CLI | 不翻译, AI助手名称 |
-| CodeBuddy | CodeBuddy | 不翻译, AI助手名称 |
-| Amazon Q Developer CLI | Amazon Q Developer CLI | 不翻译, AI助手名称 |
-| Amp | Amp | 不翻译, AI助手名称 |
+1. **專業性**: 使用簡潔、準確的技術中文, 避免過度口語化, 保持專業性
+2. **技術術語保留**: 對於國際通用的技術術語, 保持英文原文
+3. **概念翻譯**: 對於描述性概念, 使用準確的中文翻譯
+4. **品牌一致性**: 保持產品名稱和品牌標識的一致性
+5. **使用者體驗**: 確保翻譯後的內容對中文使用者友好且易於理解
 
 ---
 
-## 技术概念术语
+## 產品和品牌術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| Spec-Driven Development | 规范驱动开发 | 核心方法论, 简称SDD |
-| User Story | 用户故事 | 需求描述方式 |
-| Acceptance Criteria | 验收标准 | 功能完成条件 |
-| Implementation Plan | 实施计划 | 开发执行方案 |
-| Feature Specification | 功能规范 | 功能详细说明 |
-| Code Quality | 代码质量 | 代码质量标准 |
-| Task Breakdown | 任务分解 | 将功能分解为可执行任务 |
-| Project Setup | 项目设置 | 项目初始化配置 |
-| Template | 模板 | 项目初始化模板 |
+| Spec Kit | Spec Kit | 不翻譯, 保持原品牌名稱 |
+| Spec Kit TW | Spec Kit TW | 中文版專案名稱 |
+| Specify CLI | Specify CLI | 原版CLI工具名稱 |
+| specify-tw | specify-tw | 中文版CLI命令 |
+| GitHub | GitHub | 不翻譯, 平臺名稱 |
+| Claude Code | Claude Code | 不翻譯, AI助手名稱 |
+| Gemini CLI | Gemini CLI | 不翻譯, AI助手名稱 |
+| GitHub Copilot | GitHub Copilot | 不翻譯, AI助手名稱 |
+| Cursor | Cursor | 不翻譯, AI助手名稱 |
+| cursor-agent | cursor-agent | 不翻譯, CLI工具名稱 |
+| Qwen Code | Qwen Code | 不翻譯, AI助手名稱 |
+| opencode | opencode | 不翻譯, AI助手名稱 |
+| Codex CLI | Codex CLI | 不翻譯, AI助手名稱 |
+| Windsurf | Windsurf | 不翻譯, AI助手名稱 |
+| Kilo Code | Kilo Code | 不翻譯, AI助手名稱 |
+| Auggie CLI | Auggie CLI | 不翻譯, AI助手名稱 |
+| CodeBuddy | CodeBuddy | 不翻譯, AI助手名稱 |
+| Amazon Q Developer CLI | Amazon Q Developer CLI | 不翻譯, AI助手名稱 |
+| Amp | Amp | 不翻譯, AI助手名稱 |
+
+---
+
+## 技術概念術語
+
+| 英文 | 中文 | 說明 |
+|------|------|------|
+| Spec-Driven Development | 規格驅動開發 | 核心方法論, 簡稱SDD |
+| User Story | 使用者故事 | 需求描述方式 |
+| Acceptance Criteria | 驗收標準 | 功能完成條件 |
+| Implementation Plan | 實施計劃 | 開發執行方案 |
+| Feature Specification | 功能規格 | 功能詳細說明 |
+| Code Quality | 程式碼品質 | 程式碼品質標準 |
+| Task Breakdown | 任務分解 | 將功能分解為可執行任務 |
+| Project Setup | 專案設定 | 專案初始化配置 |
+| Template | 模板 | 專案初始化模板 |
 | Command | 命令 | CLI命令或AI助手命令 |
-| Script | 脚本 | 自动化脚本 |
-| Workflow | 工作流 | 开发流程 |
-| Agent | 代理 | AI助手的统称 |
-| Configuration | 配置 | 系统配置 |
-| Integration | 集成 | 系统集成 |
-| Validation | 验证 | 功能验证 |
-| Testing | 测试 | 软件测试 |
-| Prerequisites | 先决条件 | 系统运行的前置条件 |
-| Resilience | 弹性 | 系统容错和恢复能力 |
-| Rollback | 回滚 | 系统回退机制 |
-| Dependencies | 依赖关系 | 技术组件间的依赖 |
+| Script | 指令碼 | 自動化指令碼 |
+| Workflow | 工作流 | 開發流程 |
+| Agent | 代理 | AI助手的統稱 |
+| Configuration | 配置 | 系統配置 |
+| Integration | 整合 | 系統整合 |
+| Validation | 驗證 | 功能驗證 |
+| Testing | 測試 | 軟體測試 |
+| Prerequisites | 先決條件 | 系統執行的前置條件 |
+| Resilience | 彈性 | 系統容錯和恢復能力 |
+| Rollback | 回滾 | 系統回退機制 |
+| Dependencies | 依賴關係 | 技術元件間的依賴 |
 
 ---
 
-## 开发工具和技术术语
+## 開發工具和技術術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| CLI | CLI | 不翻译, 命令行界面 |
-| API | API | 不翻译, 应用程序接口 |
-| JSON | JSON | 不翻译, 数据格式 |
-| TOML | TOML | 不翻译, 配置文件格式 |
-| YAML | YAML | 不翻译, 数据格式 |
-| Git | Git | 不翻译, 版本控制系统 |
-| Repository | 仓库 | Git仓库 |
+| CLI | CLI | 不翻譯, 命令列介面 |
+| API | API | 不翻譯, 應用程式介面 |
+| JSON | JSON | 不翻譯, 資料格式 |
+| TOML | TOML | 不翻譯, 設定檔格式 |
+| YAML | YAML | 不翻譯, 資料格式 |
+| Git | Git | 不翻譯, 版本控制系統 |
+| Repository | 倉庫 | Git倉庫 |
 | Commit | 提交 | Git提交 |
 | Branch | 分支 | Git分支 |
-| Merge | 合并 | Git合并 |
-| Framework | 框架 | 开发框架 |
-| Library | 库 | 程序库 |
-| Package | 包 | 软件包 |
-| Dependency | 依赖 | 项目依赖 |
-| Environment | 环境 | 开发环境 |
-| Build | 构建 | 项目构建 |
-| Deploy | 部署 | 项目部署 |
-| Debug | 调试 | 程序调试 |
-| Artifact | 制品 | 构建产物、部署包等输出物 |
+| Merge | 合併 | Git合併 |
+| Framework | 框架 | 開發框架 |
+| Library | 庫 | 程式庫 |
+| Package | 包 | 軟體包 |
+| Dependency | 依賴 | 專案依賴 |
+| Environment | 環境 | 開發環境 |
+| Build | 構建 | 專案構建 |
+| Deploy | 部署 | 專案部署 |
+| Debug | 除錯 | 程式除錯 |
+| Artifact | 製品 | 構建產物、部署包等輸出物 |
 
 ---
 
-## 文件和目录术语
+## 檔案和目錄術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| Directory | 目录 | 文件系统目录 |
-| Folder | 文件夹 | 文件系统文件夹 |
-| File | 文件 | 计算机文件 |
-| Path | 路径 | 文件路径 |
-| Template | 模板 | 项目模板文件 |
-| Configuration | 配置 | 配置文件 |
-| Documentation | 文档 | 项目文档 |
-| Script | 脚本 | 脚本文件 |
-| Log | 日志 | 日志文件 |
-| Output | 输出 | 程序输出 |
-| Input | 输入 | 用户输入 |
-| Source Code | 源代码 | 程序源代码 |
-| Binary | 二进制 | 编译后的文件 |
-| Archive | 归档 | 压缩归档文件 |
+| Directory | 目錄 | 檔案系統目錄 |
+| Folder | 資料夾 | 檔案系統資料夾 |
+| File | 檔案 | 計算機檔案 |
+| Path | 路徑 | 檔案路徑 |
+| Template | 模板 | 專案模板檔案 |
+| Configuration | 配置 | 設定檔 |
+| Documentation | 文件 | 專案文件 |
+| Script | 指令碼 | 指令碼檔案 |
+| Log | 日誌 | 日誌檔案 |
+| Output | 輸出 | 程式輸出 |
+| Input | 輸入 | 使用者輸入 |
+| Source Code | 原始碼 | 程式原始碼 |
+| Binary | 二進位制 | 編譯後的檔案 |
+| Archive | 歸檔 | 壓縮歸檔檔案 |
 
 ---
 
-## 用户界面术语
+## 使用者介面術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
 | Command | 命令 | CLI命令 |
-| Option | 选项 | 命令行选项 |
-| Argument | 参数 | 命令行参数 |
-| Flag | 标志 | 命令行标志 |
-| Help | 帮助 | 帮助信息 |
-| Error | 错误 | 错误信息 |
-| Warning | 警告 | 警告信息 |
-| Info | 信息 | 信息提示 |
-| Success | 成功 | 成功状态 |
-| Failed | 失败 | 失败状态 |
-| Progress | 进度 | 进度显示 |
-| Status | 状态 | 状态信息 |
-| Interactive | 交互式 | 交互模式 |
+| Option | 選項 | 命令列選項 |
+| Argument | 引數 | 命令列引數 |
+| Flag | 標誌 | 命令列標誌 |
+| Help | 幫助 | 幫助資訊 |
+| Error | 錯誤 | 錯誤資訊 |
+| Warning | 警告 | 警告資訊 |
+| Info | 資訊 | 資訊提示 |
+| Success | 成功 | 成功狀態 |
+| Failed | 失敗 | 失敗狀態 |
+| Progress | 進度 | 進度顯示 |
+| Status | 狀態 | 狀態資訊 |
+| Interactive | 互動式 | 互動模式 |
 | Prompt | 提示 | 命令提示符 |
-| Menu | 菜单 | 选择菜单 |
-| Selection | 选择 | 用户选择 |
+| Menu | 選單 | 選擇選單 |
+| Selection | 選擇 | 使用者選擇 |
 
 ---
 
-## 项目管理术语
+## 專案管理術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| Project | 项目 | 软件项目 |
-| Feature | 功能 | 产品功能 |
+| Project | 專案 | 軟體專案 |
+| Feature | 功能 | 產品功能 |
 | Requirement | 需求 | 功能需求 |
-| Specification | 规范 | 技术规范 |
-| Milestone | 里程碑 | 项目里程碑 |
-| Release | 发布 | 版本发布 |
-| Version | 版本 | 软件版本 |
+| Specification | 規格 | 技術規格 |
+| Milestone | 里程碑 | 專案里程碑 |
+| Release | 釋出 | 版本釋出 |
+| Version | 版本 | 軟體版本 |
 | Update | 更新 | 版本更新 |
-| Patch | 补丁 | 修复补丁 |
-| Bug | 缺陷 | 程序缺陷 |
-| Issue | 问题 | 项目问题 |
-| Task | 任务 | 开发任务 |
-| Phase | 阶段 | 开发阶段 |
-| Sprint | 冲刺 | 开发冲刺 |
+| Patch | 補丁 | 修復補丁 |
+| Bug | 缺陷 | 程式缺陷 |
+| Issue | 問題 | 專案問題 |
+| Task | 任務 | 開發任務 |
+| Phase | 階段 | 開發階段 |
+| Sprint | 衝刺 | 開發衝刺 |
 
 ---
 
-## AI和机器学习术语
+## AI和機器學習術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| AI Assistant | AI助手 | 人工智能助手 |
+| AI Assistant | AI助手 | 人工智慧助手 |
 | Agent | 代理 | AI代理 |
 | Model | 模型 | AI模型 |
-| Training | 训练 | 模型训练 |
+| Training | 訓練 | 模型訓練 |
 | Inference | 推理 | 模型推理 |
-| Prompt | 提示 | AI提示词 |
-| Context | 上下文 | 对话上下文 |
-| Response | 响应 | AI响应 |
-| Generation | 生成 | 内容生成 |
-| Completion | 补全 | 文本补全 |
-| Token | 令牌 | 文本令牌 |
-| API Key | API密钥 | 认证密钥 |
-| Authentication | 认证 | 身份认证 |
-| Authorization | 授权 | 访问授权 |
+| Prompt | 提示 | AI提示詞 |
+| Context | 上下文 | 對話上下文 |
+| Response | 響應 | AI響應 |
+| Generation | 生成 | 內容生成 |
+| Completion | 補全 | 文字補全 |
+| Token | 令牌 | 文字令牌 |
+| API Key | API金鑰 | 認證金鑰 |
+| Authentication | 認證 | 身份認證 |
+| Authorization | 授權 | 訪問授權 |
 
 ---
 
-## 网络和安全术语
+## 網路和安全術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| HTTP | HTTP | 不翻译, 网络协议 |
-| HTTPS | HTTPS | 不翻译, 安全网络协议 |
-| URL | URL | 不翻译, 统一资源定位符 |
-| Endpoint | 端点 | API端点 |
-| Request | 请求 | 网络请求 |
-| Response | 响应 | 网络响应 |
-| Token | 令牌 | 认证令牌 |
-| SSL/TLS | SSL/TLS | 不翻译, 安全协议 |
-| Certificate | 证书 | 安全证书 |
-| Encryption | 加密 | 数据加密 |
-| Authentication | 认证 | 身份认证 |
-| Authorization | 授权 | 访问授权 |
-| Security | 安全 | 信息安全 |
-| Privacy | 隐私 | 数据隐私 |
+| HTTP | HTTP | 不翻譯, 網路協議 |
+| HTTPS | HTTPS | 不翻譯, 安全網路協議 |
+| URL | URL | 不翻譯, 統一資源定位符 |
+| Endpoint | 端點 | API端點 |
+| Request | 請求 | 網路請求 |
+| Response | 響應 | 網路響應 |
+| Token | 令牌 | 認證令牌 |
+| SSL/TLS | SSL/TLS | 不翻譯, 安全協議 |
+| Certificate | 證書 | 安全證書 |
+| Encryption | 加密 | 資料加密 |
+| Authentication | 認證 | 身份認證 |
+| Authorization | 授權 | 訪問授權 |
+| Security | 安全 | 資訊安全 |
+| Privacy | 隱私 | 資料隱私 |
 
 ---
 
-## 开发方法论术语
+## 開發方法論術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| Agile | 敏捷 | 敏捷开发 |
-| Scrum | Scrum | 不翻译, 敏捷框架 |
-| Kanban | Kanban | 不翻译, 看板方法 |
-| TDD | 测试驱动开发 | Test-Driven Development |
-| BDD | 行为驱动开发 | Behavior-Driven Development |
-| CI/CD | 持续集成/持续部署 | Continuous Integration/Continuous Deployment |
-| Refactoring | 重构 | 代码重构 |
-| Code Review | 代码审查 | 代码评审 |
-| Best Practice | 最佳实践 | 开发最佳实践 |
-| Pattern | 模式 | 设计模式 |
-| Architecture | 架构 | 系统架构 |
-| Design | 设计 | 软件设计 |
+| Agile | 敏捷 | 敏捷開發 |
+| Scrum | Scrum | 不翻譯, 敏捷框架 |
+| Kanban | Kanban | 不翻譯, 看板方法 |
+| TDD | 測試驅動開發 | Test-Driven Development |
+| BDD | 行為驅動開發 | Behavior-Driven Development |
+| CI/CD | 持續整合/持續部署 | Continuous Integration/Continuous Deployment |
+| Refactoring | 重構 | 程式碼重構 |
+| Code Review | 程式碼審查 | 程式碼評審 |
+| Best Practice | 最佳實踐 | 開發最佳實踐 |
+| Pattern | 模式 | 設計模式 |
+| Architecture | 架構 | 系統架構 |
+| Design | 設計 | 軟體設計 |
 
 ---
 
-## 技术标记术语
+## 技術標記術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| NEEDS CLARIFICATION | 需要澄清标记 | 不可翻译的技术标记，用于标记规划中的未知项 |
-| N/A | 不适用标记 | 不可翻译的技术标记，表示项目不适用某项配置 |
-| TODO | 待办标记 | 不可翻译的技术标记，用于标记待完成的任务 |
-| TKTK | 占位符标记 | 不可翻译的技术标记，用于临时占位 |
-| ??? | 不确定标记 | 不可翻译的技术标记，用于标记不确定内容 |
+| NEEDS CLARIFICATION | 需要澄清標記 | 不可翻譯的技術標記，用於標記規劃中的未知項 |
+| N/A | 不適用標記 | 不可翻譯的技術標記，表示專案不適用某項配置 |
+| TODO | 待辦標記 | 不可翻譯的技術標記，用於標記待完成的任務 |
+| TKTK | 佔位符標記 | 不可翻譯的技術標記，用於臨時佔位 |
+| ??? | 不確定標記 | 不可翻譯的技術標記，用於標記不確定內容 |
 
-### 技术标记使用规则
+### 技術標記使用規則
 
-#### 🔴 禁止翻译的标记
-以下技术标记**必须保持英文原样**，任何翻译都会导致脚本失效：
+#### 🔴 禁止翻譯的標記
+以下技術標記**必須保持英文原樣**，任何翻譯都會導致指令碼失效：
 
-- **NEEDS CLARIFICATION**: 脚本中的过滤逻辑依赖此标记
-- **N/A**: 脚本中的条件判断依赖此标记
-- **TODO**: 构建和分析工具依赖此标记
-- **TKTK**: 模板和分析工具依赖此标记
-- **???**: 分析和检查工具依赖此标记
+- **NEEDS CLARIFICATION**: 指令碼中的過濾邏輯依賴此標記
+- **N/A**: 指令碼中的條件判斷依賴此標記
+- **TODO**: 構建和分析工具依賴此標記
+- **TKTK**: 模板和分析工具依賴此標記
+- **???**: 分析和檢查工具依賴此標記
 
-#### ✅ 正确处理方式
-- **保持英文**: 所有技术标记保持英文格式不变
-- **解释说明**: 在中文文本中解释标记的含义
-- **一致格式**: 使用完全相同的大小写和格式
+#### ✅ 正確處理方式
+- **保持英文**: 所有技術標記保持英文格式不變
+- **解釋說明**: 在中文文字中解釋標記的含義
+- **一致格式**: 使用完全相同的大小寫和格式
 
-#### ❌ 错误处理方式
-- **禁止翻译**: 不得翻译为"需要澄清"、"不适用"等
-- **禁止修改**: 不得更改大小写或格式
-- **禁用变体**: 不得使用如"NEED-CLARIFICATION"等变体
+#### ❌ 錯誤處理方式
+- **禁止翻譯**: 不得翻譯為"需要澄清"、"不適用"等
+- **禁止修改**: 不得更改大小寫或格式
+- **停用變體**: 不得使用如"NEED-CLARIFICATION"等變體
 
 ---
 
-## 特殊规则和注意事项
+## 特殊規則和注意事項
 
-### 1. 不翻译的英文术语
-以下术语在任何情况下都不翻译: 
+### 1. 不翻譯的英文術語
+以下術語在任何情況下都不翻譯: 
 - **CLI, API, JSON, TOML, YAML, Git, GitHub**
-- **AI助手名称**: Claude Code, Gemini CLI, GitHub Copilot, Cursor, 等
-- **技术标准**: HTTP, HTTPS, SSL, TLS, URL
-- **编程语言**: Python, JavaScript, TypeScript, Java, Go, 等
-- **框架名称**: React, Vue, Angular, Django, Flask, 等
+- **AI助手名稱**: Claude Code, Gemini CLI, GitHub Copilot, Cursor, 等
+- **技術標準**: HTTP, HTTPS, SSL, TLS, URL
+- **程式語言**: Python, JavaScript, TypeScript, Java, Go, 等
+- **框架名稱**: React, Vue, Angular, Django, Flask, 等
 
-### 2. 必须翻译的概念
-以下概念必须使用中文翻译: 
-- **Spec-Driven Development** → 规范驱动开发
-- **User Story** → 用户故事
-- **Acceptance Criteria** → 验收标准
-- **Implementation Plan** → 实施计划
-- **Feature Specification** → 功能规范
+### 2. 必須翻譯的概念
+以下概念必須使用中文翻譯: 
+- **Spec-Driven Development** → 規格驅動開發
+- **User Story** → 使用者故事
+- **Acceptance Criteria** → 驗收標準
+- **Implementation Plan** → 實施計劃
+- **Feature Specification** → 功能規格
 
-### 3. 品牌处理规则
-- **GitHub** → GitHub(不翻译)
-- **Spec Kit** → Spec Kit(不翻译)
-- **Spec Kit CN** → Spec Kit CN(中文版标识)
+### 3. 品牌處理規則
+- **GitHub** → GitHub(不翻譯)
+- **Spec Kit** → Spec Kit(不翻譯)
+- **Spec Kit TW** → Spec Kit TW(中文版標識)
 - **specify** → specify(原版命令)
-- **specify-cn** → specify-cn(中文版命令)
+- **specify-tw** → specify-tw(中文版命令)
 
-### 4. 标点符号规则
-- **统一英文**: 统一使用英文标点(, . : ; ! ?)，如果标点后面还有内容，则添加一个空格.
+### 4. 標點符號規則
+- **統一英文**: 統一使用英文標點(, . : ; ! ?)，如果標點後面還有內容，則新增一個空格.
 
-### 5. 大小写规则
-- **专有名词**: 保持原有大小写
-- **中文翻译**: 使用中文大小写规则
-- **代码片段**: 保持原样
-- **文件路径**: 保持原样
-
----
-
-## 翻译质量检查清单
-
-在翻译完成后, 请检查以下项目: 
-
-### 术语一致性
-- [ ] 所有术语都按照本术语表进行翻译
-- [ ] 同一术语在整个文档中保持一致
-- [ ] 新术语已经添加到术语表中
-
-### 技术准确性
-- [ ] 技术概念翻译准确无误
-- [ ] 代码示例保持原样
-- [ ] 文件路径和命令保持正确
-- [ ] 链接和引用有效
-
-### 语言质量
-- [ ] 中文表达自然流畅
-- [ ] 语句结构清晰易懂
-- [ ] 专业术语使用恰当
-- [ ] 避免直译和生硬表达
-
-### 格式规范
-- [ ] 标点符号使用正确
-- [ ] 代码块格式正确
-- [ ] 列表和表格格式规范
-- [ ] 标题层级清晰
+### 5. 大小寫規則
+- **專有名詞**: 保持原有大小寫
+- **中文翻譯**: 使用中文大小寫規則
+- **程式碼片段**: 保持原樣
+- **檔案路徑**: 保持原樣
 
 ---
 
-## 质量维度术语
+## 翻譯品質檢查清單
 
-| 英文 | 中文 | 说明 |
+在翻譯完成後, 請檢查以下專案: 
+
+### 術語一致性
+- [ ] 所有術語都按照本術語表進行翻譯
+- [ ] 同一術語在整個文件中保持一致
+- [ ] 新術語已經新增到術語表中
+
+### 技術準確性
+- [ ] 技術概念翻譯準確無誤
+- [ ] 程式碼範例保持原樣
+- [ ] 檔案路徑和命令保持正確
+- [ ] 連結和引用有效
+
+### 語言品質
+- [ ] 中文表達自然流暢
+- [ ] 語句結構清晰易懂
+- [ ] 專業術語使用恰當
+- [ ] 避免直譯和生硬表達
+
+### 格式規格
+- [ ] 標點符號使用正確
+- [ ] 程式碼塊格式正確
+- [ ] 列表和表格格式規格
+- [ ] 標題層級清晰
+
+---
+
+## 品質維度術語
+
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| Quality Dimensions | 质量维度 | Checklist功能中的需求质量分类框架 |
-| Completeness | 完整性 | 检查需求是否完整覆盖所有必要方面 |
-| Clarity | 清晰度 | 检查需求表述是否明确无歧义 |
-| Consistency | 一致性 | 检查需求之间是否一致无冲突 |
-| Measurability | 可测量性 | 检查需求是否可以客观验证 |
-| Coverage | 覆盖度 | 检查需求是否涵盖所有场景 |
+| Quality Dimensions | 品質維度 | Checklist功能中的需求品質分類框架 |
+| Completeness | 完整性 | 檢查需求是否完整覆蓋所有必要方面 |
+| Clarity | 清晰度 | 檢查需求表述是否明確無歧義 |
+| Consistency | 一致性 | 檢查需求之間是否一致無衝突 |
+| Measurability | 可測量性 | 檢查需求是否可以客觀驗證 |
+| Coverage | 覆蓋度 | 檢查需求是否涵蓋所有場景 |
 
 ---
 
-## 问题标记和分类术语
+## 問題標記和分類術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| Gap | 缺失 | 标记缺失的需求或信息 |
-| Ambiguity | 歧义 | 标记表述不明确的需求 |
-| Conflict | 冲突 | 标记相互矛盾的需求 |
-| Assumption | 假设 | 标记未验证的假设条件 |
-| Traceability | 可追溯性 | 需求与规范的追溯关系 |
-| Edge Case | 边缘情况 | 边界条件和异常场景 |
-| Exception Flow | 异常流程 | 异常处理流程需求 |
-| Recovery | 恢复 | 系统恢复能力需求 |
+| Gap | 缺失 | 標記缺失的需求或資訊 |
+| Ambiguity | 歧義 | 標記表述不明確的需求 |
+| Conflict | 衝突 | 標記相互矛盾的需求 |
+| Assumption | 假設 | 標記未驗證的假設條件 |
+| Traceability | 可追溯性 | 需求與規格的追溯關係 |
+| Edge Case | 邊緣情況 | 邊界條件和異常場景 |
+| Exception Flow | 異常流程 | 異常處理流程需求 |
+| Recovery | 恢復 | 系統恢復能力需求 |
 
 ---
 
-## 场景分类术语
+## 場景分類術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| Scenario | 场景 | 系统运行的具体情况 |
-| Primary Scenario | 主要场景 | 正常业务流程 |
-| Alternate Scenario | 备选场景 | 可选的业务流程 |
-| Zero-state | 零状态 | 空数据或初始状态 |
-| Non-Functional | 非功能性 | 非功能需求类别 |
+| Scenario | 場景 | 系統執行的具體情況 |
+| Primary Scenario | 主要場景 | 正常業務流程 |
+| Alternate Scenario | 備選場景 | 可選的業務流程 |
+| Zero-state | 零狀態 | 空資料或初始狀態 |
+| Non-Functional | 非功能性 | 非功能需求類別 |
 
 ---
 
-## CLI技术组件术语
+## CLI技術元件術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| StepTracker | 步骤跟踪器 | 分层步骤进度跟踪UI组件 |
-| Interactive Selection | 交互式选择 | 使用箭头键的交互界面 |
-| Template Download | 模板下载 | 从GitHub下载项目模板 |
+| StepTracker | 步驟跟蹤器 | 分層步驟進度跟蹤UI元件 |
+| Interactive Selection | 互動式選擇 | 使用箭頭鍵的互動介面 |
+| Template Download | 模板下載 | 從GitHub下載專案模板 |
 
 ---
 
-## Checklist方法论术语
+## Checklist方法論術語
 
-| 英文 | 中文 | 说明 |
+| 英文 | 中文 | 說明 |
 |------|------|------|
-| Requirements Unit Testing | 需求单元测试 | Checklist的核心概念比喻 |
-| Generation Algorithm | 生成算法 | 自动生成清单的算法逻辑 |
-| Quality Validation | 质量验证 | 验证需求质量的过程 |
-| Acceptance Criteria Quality | 验收标准质量 | 验收标准的可测量性 |
+| Requirements Unit Testing | 需求單元測試 | Checklist的核心概念比喻 |
+| Generation Algorithm | 生成演算法 | 自動生成清單的演算法邏輯 |
+| Quality Validation | 品質驗證 | 驗證需求品質的過程 |
+| Acceptance Criteria Quality | 驗收標準品質 | 驗收標準的可測量性 |
 
 ---
 
-## 术语维护
+## 術語維護
 
-### 添加新术语
-当遇到新的术语时: 
-1. 检查是否已有标准翻译
-2. 查找行业通用译法
-3. 考虑用户理解习惯
-4. 添加到本术语表中
-5. 更新相关翻译文档
+### 新增新術語
+當遇到新的術語時: 
+1. 檢查是否已有標準翻譯
+2. 查詢行業通用譯法
+3. 考慮使用者理解習慣
+4. 新增到本術語表中
+5. 更新相關翻譯文件
 
-### 术语更新
-当需要更新现有术语时: 
-1. 评估更新的必要性
-2. 考虑向后兼容性
-3. 更新所有相关文档
-4. 记录更新原因和日期
-5. 通知团队成员
+### 術語更新
+當需要更新現有術語時: 
+1. 評估更新的必要性
+2. 考慮向後相容性
+3. 更新所有相關文件
+4. 記錄更新原因和日期
+5. 通知團隊成員
 
 ---
 
-*本术语表由Spec Kit CN项目维护, 最后更新时间: 2025-10-13(新增6个类别32个术语)*
+*本術語表由Spec Kit TW專案維護, 最後更新時間: 2025-10-13(新增6個類別32個術語)*
 
-*如有疑问或建议, 请通过GitHub Issues反馈: https://github.com/linfee/spec-kit-cn/issues*
+*如有疑問或建議, 請透過GitHub Issues反饋: https://github.com/rackliu/spec-kit-tw/issues*

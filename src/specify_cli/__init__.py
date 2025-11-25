@@ -10,18 +10,18 @@
 # ]
 # ///
 """
-Specify CN CLI - 设置工具，用于规范驱动开发项目
+Specify TW CLI - 設定工具，用於規格驅動開發專案
 
 Usage:
-    uvx specify-cn-cli.py init <project-name>
-    uvx specify-cn-cli.py init .
-    uvx specify-cn-cli.py init --here
+    uvx specify-tw-cli.py init <project-name>
+    uvx specify-tw-cli.py init .
+    uvx specify-tw-cli.py init --here
 
 Or install globally:
-    uv tool install --from specify-cn-cli.py specify-cn
-    specify-cn init <project-name>
-    specify-cn init .
-    specify-cn init --here
+    uv tool install --from specify-tw-cli.py specify-tw
+    specify-tw init <project-name>
+    specify-tw init .
+    specify-tw init --here
 """
 
 import os
@@ -229,7 +229,7 @@ BANNER = """
 ╚══════╝╚═╝     ╚══════╝ ╚═════╝╚═╝╚═╝        ╚═╝   
 """
 
-TAGLINE = "GitHub Spec Kit - 规范驱动开发工具包"
+TAGLINE = "GitHub Spec Kit - 規格驅動開發工具包"
 class StepTracker:
     """Track and render hierarchical steps without emojis, similar to Claude Code tree output.
     Supports live auto-refresh via an attached refresh callback.
@@ -422,8 +422,8 @@ class BannerGroup(TyperGroup):
 
 
 app = typer.Typer(
-    name="specify-cn",
-    help="Spec Kit CN 规范驱动开发项目设置工具",
+    name="specify-tw",
+    help="Spec Kit TW 規格驅動開發專案設定工具",
     add_completion=False,
     invoke_without_command=True,
     cls=BannerGroup,
@@ -448,7 +448,7 @@ def callback(ctx: typer.Context):
     """Show banner when no subcommand is provided."""
     if ctx.invoked_subcommand is None and "--help" not in sys.argv and "-h" not in sys.argv:
         show_banner()
-        console.print(Align.center("[dim]运行 'specify-cn --help' 查看使用说明[/dim]"))
+        console.print(Align.center("[dim]執行 'specify-tw --help' 檢視使用說明[/dim]"))
         console.print()
 
 def run_command(cmd: list[str], check_return: bool = True, capture: bool = False, shell: bool = False) -> Optional[str]:
@@ -537,7 +537,7 @@ def init_git_repo(project_path: Path, quiet: bool = False) -> Tuple[bool, Option
             console.print("[cyan]Initializing git repository...[/cyan]")
         subprocess.run(["git", "init"], check=True, capture_output=True, text=True)
         subprocess.run(["git", "add", "."], check=True, capture_output=True, text=True)
-        subprocess.run(["git", "commit", "-m", "Initial commit from Spec Kit CN template"], check=True, capture_output=True, text=True)
+        subprocess.run(["git", "commit", "-m", "Initial commit from Spec Kit TW template"], check=True, capture_output=True, text=True)
         if not quiet:
             console.print("[green]✓[/green] Git repository initialized")
         return True, None
@@ -623,8 +623,8 @@ def merge_json_files(existing_path: Path, new_content: dict, verbose: bool = Fal
     return merged
 
 def download_template_from_github(ai_assistant: str, download_dir: Path, *, script_type: str = "sh", verbose: bool = True, show_progress: bool = True, client: httpx.Client = None, debug: bool = False, github_token: str = None) -> Tuple[Path, dict]:
-    repo_owner = "linfee"
-    repo_name = "spec-kit-cn"
+    repo_owner = "rackliu"
+    repo_name = "spec-kit-tw"
     if client is None:
         client = httpx.Client(verify=ssl_context)
 
@@ -887,7 +887,7 @@ def download_and_extract_template(project_path: Path, ai_assistant: str, script_
 
 
 def ensure_executable_scripts(project_path: Path, tracker: StepTracker | None = None) -> None:
-    """确保 POSIX .sh 脚本在 .specify/scripts 下（递归）具有执行位（Windows 上无操作）。"""
+    """確保 POSIX .sh 指令碼在 .specify/scripts 下（遞迴）具有執行位（Windows 上無操作）。"""
     if os.name == "nt":
         return  # Windows: skip silently
     scripts_root = project_path / ".specify" / "scripts"
@@ -955,17 +955,17 @@ def init(
     6. Optionally set up AI assistant commands
     
     Examples:
-        specify-cn init my-project
-        specify-cn init my-project --ai claude
-        specify-cn init my-project --ai copilot --no-git
-        specify-cn init --ignore-agent-tools my-project
-        specify-cn init . --ai claude         # Initialize in current directory
-        specify-cn init .                     # Initialize in current directory (interactive AI selection)
-        specify-cn init --here --ai claude    # Alternative syntax for current directory
-        specify-cn init --here --ai codex
-        specify-cn init --here --ai codebuddy
-        specify-cn init --here
-        specify-cn init --here --force  # Skip confirmation when current directory not empty
+        specify-tw init my-project
+        specify-tw init my-project --ai claude
+        specify-tw init my-project --ai copilot --no-git
+        specify-tw init --ignore-agent-tools my-project
+        specify-tw init . --ai claude         # Initialize in current directory
+        specify-tw init .                     # Initialize in current directory (interactive AI selection)
+        specify-tw init --here --ai claude    # Alternative syntax for current directory
+        specify-tw init --here --ai codex
+        specify-tw init --here --ai codebuddy
+        specify-tw init --here
+        specify-tw init --here --force  # Skip confirmation when current directory not empty
     """
 
     show_banner()
@@ -975,11 +975,11 @@ def init(
         project_name = None  # Clear project_name to use existing validation logic
 
     if here and project_name:
-        console.print("[red]错误:[/red] 不能同时指定项目名称和 --here 标志")
+        console.print("[red]錯誤:[/red] 不能同時指定專案名稱和 --here 標誌")
         raise typer.Exit(1)
 
     if not here and not project_name:
-        console.print("[red]错误:[/red] 必须指定项目名称、使用 '.' 表示当前目录，或使用 --here 标志")
+        console.print("[red]錯誤:[/red] 必須指定專案名稱、使用 '.' 表示當前目錄，或使用 --here 標誌")
         raise typer.Exit(1)
 
     if here:
@@ -1054,7 +1054,7 @@ def init(
                     f"[cyan]{selected_ai}[/cyan] not found\n"
                     f"Install from: [cyan]{install_url}[/cyan]\n"
                     f"{agent_config['name']} is required to continue with this project type.\n\n"
-                    "提示：使用 [cyan]--ignore-agent-tools[/cyan] 跳过此检查",
+                    "提示：使用 [cyan]--ignore-agent-tools[/cyan] 跳過此檢查",
                     title="[red]Agent Detection Error[/red]",
                     border_style="red",
                     padding=(1, 2)
@@ -1207,32 +1207,32 @@ def init(
 
     steps_lines.append(f"{step_num}. Start using slash commands with your AI agent:")
 
-    steps_lines.append("   2.1 [cyan]/speckit.constitution[/] - 建立项目原则")
-    steps_lines.append("   2.2 [cyan]/speckit.specify[/] - 创建基线规范")
-    steps_lines.append("   2.3 [cyan]/speckit.plan[/] - 创建实施计划")
-    steps_lines.append("   2.4 [cyan]/speckit.tasks[/] - 生成可执行任务")
-    steps_lines.append("   2.5 [cyan]/speckit.implement[/] - 执行实施")
+    steps_lines.append("   2.1 [cyan]/speckit.constitution[/] - 建立專案原則")
+    steps_lines.append("   2.2 [cyan]/speckit.specify[/] - 建立基線規格")
+    steps_lines.append("   2.3 [cyan]/speckit.plan[/] - 建立實施計劃")
+    steps_lines.append("   2.4 [cyan]/speckit.tasks[/] - 生成可執行任務")
+    steps_lines.append("   2.5 [cyan]/speckit.implement[/] - 執行實施")
 
     steps_panel = Panel("\n".join(steps_lines), title="Next Steps", border_style="cyan", padding=(1,2))
     console.print()
     console.print(steps_panel)
 
     enhancement_lines = [
-        "可用于规范的可选命令 [bright_black](提高质量和信心)[/bright_black]",
+        "可用於規格的可選命令 [bright_black](提高品質和信心)[/bright_black]",
         "",
-        f"○ [cyan]/speckit.clarify[/] [bright_black](可选)[/bright_black] - 在规划前询问结构化问题以降低模糊区域的风险 (如果使用，在 [cyan]/speckit.plan[/] 前运行)",
-        f"○ [cyan]/speckit.analyze[/] [bright_black](可选)[/bright_black] - 交叉制品一致性和对齐报告 (在 [cyan]/speckit.tasks[/] 后，[cyan]/speckit.implement[/] 前)",
-        f"○ [cyan]/speckit.checklist[/] [bright_black](可选)[/bright_black] - 生成质量检查清单以验证需求的完整性、清晰度和一致性 (在 [cyan]/speckit.plan[/] 后)"
+        f"○ [cyan]/speckit.clarify[/] [bright_black](可選)[/bright_black] - 在規劃前詢問結構化問題以降低模糊區域的風險 (如果使用，在 [cyan]/speckit.plan[/] 前執行)",
+        f"○ [cyan]/speckit.analyze[/] [bright_black](可選)[/bright_black] - 交叉製品一致性和對齊報告 (在 [cyan]/speckit.tasks[/] 後，[cyan]/speckit.implement[/] 前)",
+        f"○ [cyan]/speckit.checklist[/] [bright_black](可選)[/bright_black] - 生成品質檢查清單以驗證需求的完整性、清晰度和一致性 (在 [cyan]/speckit.plan[/] 後)"
     ]
-    enhancements_panel = Panel("\n".join(enhancement_lines), title="增强命令", border_style="cyan", padding=(1,2))
+    enhancements_panel = Panel("\n".join(enhancement_lines), title="增強命令", border_style="cyan", padding=(1,2))
     console.print()
     console.print(enhancements_panel)
 
 @app.command()
 def check():
-    """检查所有必需工具是否已安装。"""
+    """檢查所有必需工具是否已安裝。"""
     show_banner()
-    console.print("[bold]正在检查已安装的工具...[/bold]\n")
+    console.print("[bold]正在檢查已安裝的工具...[/bold]\n")
 
     tracker = StepTracker("Check Available Tools")
 
@@ -1262,17 +1262,17 @@ def check():
 
     console.print(tracker.render())
 
-    console.print("\n[bold green]Specify CN CLI 已准备就绪![/bold green]")
+    console.print("\n[bold green]Specify TW CLI 已準備就緒![/bold green]")
 
     if not git_ok:
-        console.print("[dim]提示: 安装 git 用于仓库管理[/dim]")
+        console.print("[dim]提示: 安裝 git 用於倉庫管理[/dim]")
 
     if not any(agent_results.values()):
-        console.print("[dim]提示: 安装 AI 助手以获得最佳体验[/dim]")
+        console.print("[dim]提示: 安裝 AI 助手以取得最佳體驗[/dim]")
 
 @app.command()
 def version():
-    """显示版本和系统信息。"""
+    """顯示版本和系統資訊。"""
     import platform
     import importlib.metadata
     
@@ -1281,7 +1281,7 @@ def version():
     # Get CLI version from package metadata
     cli_version = "unknown"
     try:
-        cli_version = importlib.metadata.version("specify-cn-cli")
+        cli_version = importlib.metadata.version("specify-tw-cli")
     except Exception:
         # Fallback: try reading from pyproject.toml if running from source
         try:
@@ -1295,8 +1295,8 @@ def version():
             pass
     
     # Fetch latest template release version
-    repo_owner = "linfee"
-    repo_name = "spec-kit-cn"
+    repo_owner = "rackliu"
+    repo_name = "spec-kit-tw"
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/releases/latest"
     
     template_version = "unknown"

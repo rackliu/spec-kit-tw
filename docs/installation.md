@@ -1,86 +1,86 @@
-# 安装指南
+# 安裝指南
 
 ## 前置要求
 
-- **Linux/macOS**(或 Windows; 现在支持 PowerShell 脚本, 无需 WSL)
-- AI编码助手: [Claude Code](https://www.anthropic.com/claude-code), [GitHub Copilot](https://code.visualstudio.com/), [Codebuddy CLI](https://www.codebuddy.ai/cli)或 [Gemini CLI](https://github.com/google-gemini/gemini-cli)
-- [uv](https://docs.astral.sh/uv/) 用于包管理
+- **Linux/macOS**(或 Windows; 現在支援 PowerShell 指令碼, 無需 WSL)
+- AI編碼助手: [Claude Code](https://www.anthropic.com/claude-code), [GitHub Copilot](https://code.visualstudio.com/), [Codebuddy CLI](https://www.codebuddy.ai/cli)或 [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+- [uv](https://docs.astral.sh/uv/) 用於包管理
 - [Python 3.11+](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/downloads)
 
-## 安装
+## 安裝
 
-### 初始化新项目
+### 初始化新專案
 
-最简单的入门方式是初始化一个新项目: 
+最簡單的入門方式是初始化一個新專案: 
 
 ```bash
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init <PROJECT_NAME>
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init <PROJECT_NAME>
 ```
 
-或者在当前目录中初始化: 
+或者在當前目錄中初始化: 
 
 ```bash
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init .
-# 或使用 --here 标志
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init --here
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init .
+# 或使用 --here 標誌
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init --here
 ```
 
 ### 指定 AI 助手
 
-你可以在初始化时主动指定你的 AI 助手: 
+你可以在初始化時主動指定你的 AI 助手: 
 
 ```bash
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init <project_name> --ai claude
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init <project_name> --ai gemini
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init <project_name> --ai copilot
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init <project_name> --ai codebuddy
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init <project_name> --ai claude
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init <project_name> --ai gemini
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init <project_name> --ai copilot
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init <project_name> --ai codebuddy
 ```
 
-### 指定脚本类型(Shell vs PowerShell)
+### 指定指令碼型別(Shell vs PowerShell)
 
-所有自动化脚本现在同时提供 Bash(`.sh`)和 PowerShell(`.ps1`)两种变体.
+所有自動化指令碼現在同時提供 Bash(`.sh`)和 PowerShell(`.ps1`)兩種變體.
 
-自动行为: 
-- Windows 默认: `ps`
-- 其他操作系统默认: `sh`
-- 交互模式: 除非你传递 `--script` 参数, 否则会提示你选择
+自動行為: 
+- Windows 預設: `ps`
+- 其他作業系統預設: `sh`
+- 互動模式: 除非你傳遞 `--script` 引數, 否則會提示你選擇
 
-强制指定特定脚本类型: 
+強制指定特定指令碼型別: 
 ```bash
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init <project_name> --script sh
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init <project_name> --script ps
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init <project_name> --script sh
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init <project_name> --script ps
 ```
 
-### 忽略助手工具检查
+### 忽略助手工具檢查
 
-如果你希望获取模板而不检查正确的工具: 
+如果你希望獲取模板而不檢查正確的工具: 
 
 ```bash
-uvx --from git+https://github.com/linfee/spec-kit-cn.git specify-cn init <project_name> --ai claude --ignore-agent-tools
+uvx --from git+https://github.com/rackliu/spec-kit-tw.git specify-tw init <project_name> --ai claude --ignore-agent-tools
 ```
 
-## 验证
+## 驗證
 
-初始化后, 你应该在 AI 助手中看到以下可用命令: 
-- `/speckit.specify` - 创建规范
-- `/speckit.plan` - 生成实施计划
-- `/speckit.tasks` - 分解为可执行任务
+初始化後, 你應該在 AI 助手中看到以下可用命令: 
+- `/speckit.specify` - 建立規格
+- `/speckit.plan` - 生成實施計劃
+- `/speckit.tasks` - 分解為可執行任務
 
-`.specify/scripts` 目录将同时包含 `.sh` 和 `.ps1` 脚本.
+`.specify/scripts` 目錄將同時包含 `.sh` 和 `.ps1` 指令碼.
 
 ## 故障排除
 
-### Linux 上的 Git 凭据管理器
+### Linux 上的 Git 憑據管理器
 
-如果你在 Linux 上遇到 Git 身份验证问题, 可以安装 Git 凭据管理器: 
+如果你在 Linux 上遇到 Git 身份驗證問題, 可以安裝 Git 憑據管理器: 
 
 ```bash
 #!/usr/bin/env bash
 set -e
-echo "正在下载Git凭据管理器v2.6.1..."
+echo "正在下載Git憑據管理器v2.6.1..."
 wget https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.6.1/gcm-linux_amd64.2.6.1.deb
-echo "正在安装Git凭据管理器..."
+echo "正在安裝Git憑據管理器..."
 sudo dpkg -i gcm-linux_amd64.2.6.1.deb
 echo "正在配置Git使用GCM..."
 git config --global credential.helper manager

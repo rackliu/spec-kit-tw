@@ -5,10 +5,10 @@
       "mcp__context7__get-library-docs",
       "Bash(git describe:*)",
       "Bash(git add:*)",
-      "Bash(uv run specify-cn check)",
-      "Bash(uv run specify-cn --version)",
-      "Bash(uv run specify-cn version:*)",
-      "Bash(uv run specify-cn:*)"
+      "Bash(uv run specify-tw check)",
+      "Bash(uv run specify-tw --version)",
+      "Bash(uv run specify-tw version:*)",
+      "Bash(uv run specify-tw:*)"
     ],
     "deny": [],
     "ask": []

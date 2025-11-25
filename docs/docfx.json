@@ -56,13 +56,13 @@
     "cleanupCacheHistory": false,
     "disableGitFeatures": false,
     "globalMetadata": {
-      "_appTitle": "Spec Kit CN 文档",
-      "_appName": "Spec Kit CN",
-      "_appFooter": "Spec Kit CN - 规范驱动开发工具包",
+      "_appTitle": "Spec Kit TW 文件",
+      "_appName": "Spec Kit TW",
+      "_appFooter": "Spec Kit TW - 規格驅動開發工具包",
       "_enableSearch": true,
       "_disableContribution": false,
       "_gitContribute": {
-        "repo": "https://github.com/Linfee/spec-kit-cn",
+        "repo": "https://github.com/rackliu/spec-kit-tw",
         "branch": "main"
       }
     }
