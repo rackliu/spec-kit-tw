@@ -1,13 +1,13 @@
 ---
-description: 执行实施规划工作流, 使用计划模板生成设计制品.
+description: 執行實施規劃工作流, 使用計劃模板生成設計製品.
 handoffs:
-  - label: 创建任务
+  - label: 建立任務
     agent: speckit.tasks
-    prompt: 将计划分解为任务
+    prompt: 將計劃分解為任務
     send: true
-  - label: 创建检查清单
+  - label: 建立檢查清單
     agent: speckit.checklist
-    prompt: 为需求创建质量检查清单
+    prompt: 為需求建立品質檢查清單
     send: true
 scripts:
   sh: scripts/bash/setup-plan.sh --json
@@ -17,41 +17,41 @@ agent_scripts:
   ps: scripts/powershell/update-agent-context.ps1 -AgentType __AGENT__
 ---
 
-## 用户输入
+## 使用者輸入
 
 ```text
 $ARGUMENTS
 ```
 
-在继续之前, 你**必须**考虑用户输入(如果不为空).
+在繼續之前, 你**必須**考慮使用者輸入(如果不為空).
 
-## 大纲
+## 大綱
 
-1. **设置**: 从仓库根目录运行 `{SCRIPT}` 并解析 JSON 获取 FEATURE_SPEC、IMPL_PLAN、SPECS_DIR、BRANCH. 对于参数中的单引号如 "I'm Groot", 使用转义语法: 例如 'I'\''m Groot'(或尽可能使用双引号: "I'm Groot").
+1. **設定**: 從倉庫根目錄執行 `{SCRIPT}` 並解析 JSON 獲取 FEATURE_SPEC、IMPL_PLAN、SPECS_DIR、BRANCH. 對於引數中的單引號如 "I'm Groot", 使用轉義語法: 例如 'I'\''m Groot'(或儘可能使用雙引號: "I'm Groot").
 
-2. **加载上下文**: 读取 FEATURE_SPEC 和 `/memory/constitution.md`. 加载 IMPL_PLAN 模板(已复制).
+2. **載入上下文**: 讀取 FEATURE_SPEC 和 `/memory/constitution.md`. 載入 IMPL_PLAN 模板(已複製).
 
-3. **执行计划工作流**: 按照 IMPL_PLAN 模板中的结构: 
-   - 填充技术上下文(将未知项标记为 NEEDS CLARIFICATION)
-   - 从章程文档填充章程检查部分
-   - 评估关卡(如果违规无正当理由则报错)
-   - 阶段 0: 生成 research.md(解决所有 NEEDS CLARIFICATION)
-   - 阶段 1: 生成 data-model.md、contracts/、quickstart.md
-   - 阶段 1: 通过运行代理脚本更新代理上下文
-   - 设计后重新评估章程检查
+3. **執行計劃工作流**: 按照 IMPL_PLAN 模板中的結構: 
+   - 填充技術上下文(將未知項標記為 NEEDS CLARIFICATION)
+   - 從章程文件填充章程檢查部分
+   - 評估關卡(如果違規無正當理由則報錯)
+   - 階段 0: 生成 research.md(解決所有 NEEDS CLARIFICATION)
+   - 階段 1: 生成 data-model.md、contracts/、quickstart.md
+   - 階段 1: 透過執行代理指令碼更新代理上下文
+   - 設計後重新評估章程檢查
 
-4. **停止并报告**: 命令在阶段 2 规划后结束. 报告分支、IMPL_PLAN 路径和生成的制品.
+4. **停止並報告**: 命令在階段 2 規劃後結束. 報告分支、IMPL_PLAN 路徑和生成的製品.
 
-## 阶段
+## 階段
 
-### 阶段 0: 大纲与研究
+### 階段 0: 大綱與研究
 
-1. **从上述技术上下文中提取未知项**: 
-   - 每个 NEEDS CLARIFICATION → 研究任务
-   - 每个依赖项 → 最佳实践任务
-   - 每个集成 → 模式任务
+1. **從上述技術上下文中提取未知項**: 
+   - 每個 NEEDS CLARIFICATION → 研究任務
+   - 每個依賴項 → 最佳實踐任務
+   - 每個整合 → 模式任務
 
-2. **生成和分发研究代理**: 
+2. **生成和分發研究代理**: 
    ```
    For each unknown in Technical Context:
      Task: "Research {unknown} for {feature context}"
@@ -59,37 +59,37 @@ $ARGUMENTS
      Task: "Find best practices for {tech} in {domain}"
    ```
 
-3. **在 `research.md` 中整合发现**, 使用格式: 
-   - Decision: [选择了什么]
-   - Rationale: [为什么选择]
-   - Alternatives considered: [还评估了什么]
+3. **在 `research.md` 中整合發現**, 使用格式: 
+   - Decision: [選擇了什麼]
+   - Rationale: [為什麼選擇]
+   - Alternatives considered: [還評估了什麼]
 
-**输出**: research.md, 所有 NEEDS CLARIFICATION 已解决
+**輸出**: research.md, 所有 NEEDS CLARIFICATION 已解決
 
-### 阶段 1: 设计与合同
+### 階段 1: 設計與合同
 
-**前提条件**: `research.md` 完成
+**前提條件**: `research.md` 完成
 
-1. **从功能规范中提取实体** → `data-model.md`: 
-   - 实体名称、字段、关系
-   - 来自需求的验证规则
-   - 状态转换(如适用)
+1. **從功能規格中提取實體** → `data-model.md`: 
+   - 實體名稱、欄位、關係
+   - 來自需求的驗證規則
+   - 狀態轉換(如適用)
 
-2. **从功能需求生成 API 合同**: 
-   - 每个用户操作 → 端点
-   - 使用标准 REST/GraphQL 模式
-   - 将 OpenAPI/GraphQL 模式输出到 `/contracts/`
+2. **從功能需求生成 API 合同**: 
+   - 每個使用者操作 → 端點
+   - 使用標準 REST/GraphQL 模式
+   - 將 OpenAPI/GraphQL 模式輸出到 `/contracts/`
 
 3. **代理上下文更新**: 
-   - 运行 `{AGENT_SCRIPT}`
-   - 这些脚本检测正在使用哪个 AI 代理
-   - 更新相应的代理特定上下文文件
-   - 仅添加当前计划中的新技术
-   - 保留标记之间的手动添加内容
+   - 執行 `{AGENT_SCRIPT}`
+   - 這些指令碼檢測正在使用哪個 AI 代理
+   - 更新相應的代理特定上下文檔案
+   - 僅添加當前計劃中的新技術
+   - 保留標記之間的手動新增內容
 
-**输出**: data-model.md、/contracts/*、quickstart.md、代理特定文件
+**輸出**: data-model.md、/contracts/*、quickstart.md、代理特定檔案
 
-## 关键规则
+## 關鍵規則
 
-- 使用绝对路径
-- 关卡失败或未解决的澄清事项时报错
+- 使用絕對路徑
+- 關卡失敗或未解決的澄清事項時報錯

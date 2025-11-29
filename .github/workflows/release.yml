@@ -67,7 +67,7 @@ jobs:
 
         # Create release notes
         cat > release_notes.md << EOF
-        Spec Kit CN 中文模板发布 ${{ steps.get_tag.outputs.current_tag }}
+        Spec Kit TW 中文模板釋出 ${{ steps.get_tag.outputs.current_tag }}
 
         Updated specification-driven development templates for multiple AI assistants including GitHub Copilot, Claude Code, Gemini CLI, Cursor, Qwen, OpenCode, Windsurf, Codex, Kilocode, Auggie, Roo, CodeBuddy, Amp, SHAI, Amazon Q Developer, and IBM Bob.
 
@@ -148,7 +148,7 @@ jobs:
           spec-kit-template-shai-ps-${{ steps.get_tag.outputs.package_version }}.zip \
           spec-kit-template-bob-sh-${{ steps.get_tag.outputs.package_version }}.zip \
           spec-kit-template-bob-ps-${{ steps.get_tag.outputs.package_version }}.zip \
-          --title "Spec Kit CN 中文模板 - $VERSION_NO_V" \
+          --title "Spec Kit TW 中文模板 - $VERSION_NO_V" \
           --notes-file release_notes.md
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

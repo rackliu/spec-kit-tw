@@ -1,144 +1,144 @@
-# Spec Kit CN
+# Spec Kit TW
 
-> **项目性质**: GitHub Spec Kit 的官方中文复刻版本, 仅做中文本地化, 不开发新特性
+> **專案性質**: GitHub Spec Kit 的官方中文復刻版本, 僅做中文字地化, 不開發新特性
 
-## 项目标识
+## 專案標識
 
-### 核心信息
-- **项目名称**: Spec Kit CN
-- **原版项目**: [github/spec-kit](https://github.com/github/spec-kit)
-- **当前项目**: [linfee/spec-kit-cn](https://github.com/linfee/spec-kit-cn)
-- **包名**: `specify-cn`(原版: `specify-cli` 不做更改)
-- **命令**: `specify-cn`(原版: `specify`)
-- **文档语言**: 中文(原版: 英文)
+### 核心資訊
+- **專案名稱**: Spec Kit TW
+- **原版專案**: [github/spec-kit](https://github.com/github/spec-kit)
+- **當前專案**: [rackliu/spec-kit-tw](https://github.com/rackliu/spec-kit-tw)
+- **包名**: `specify-tw`(原版: `specify-cli` 不做更改)
+- **命令**: `specify-tw`(原版: `specify`)
+- **文件語言**: 中文(原版: 英文)
 
-### 核心原则
-1. **功能对等**: 与原版保持完全一致的功能, 不添加新特性
-2. **仅做本地化**: 专注于中文翻译和本地化适配
-3. **同步优先**: 定期与原版同步, 保持技术更新
+### 核心原則
+1. **功能對等**: 與原版保持完全一致的功能, 不新增新特性
+2. **僅做本地化**: 專注於中文翻譯和本地化適配
+3. **同步優先**: 定期與原版同步, 保持技術更新
 
-### 关键差异
-| 项目     | 原版            | 中文版           |
+### 關鍵差異
+| 專案     | 原版            | 中文版           |
 | -------- | --------------- | ---------------- |
-| 包名     | `specify-cli`   | `specify-cn-cli` |
-| 命令     | `specify`       | `specify-cn`     |
-| 文档     | 英文            | 中文             |
-| 功能     | 持续开发        | 仅做本地化       |
-| 斜杠命令 | `/speckit.plan` | 保持一致         |
+| 包名     | `specify-cli`   | `specify-tw-cli` |
+| 命令     | `specify`       | `specify-tw`     |
+| 文件     | 英文            | 中文             |
+| 功能     | 持續開發        | 僅做本地化       |
+| 斜槓命令 | `/speckit.plan` | 保持一致         |
 
 ---
 
-## 快速参考
+## 快速參考
 
 ### 常用命令
 ```bash
-# 开发环境
-uv sync                              # 同步依赖
-uv run specify-cn --help             # 运行 CLI
-uv run specify-cn check              # 检查工具链
+# 開發環境
+uv sync                              # 同步依賴
+uv run specify-tw --help             # 執行 CLI
+uv run specify-tw check              # 檢查工具鏈
 
-# 测试功能
-specify-cn init test-project --ai claude    # 测试项目初始化
-specify-cn --help | grep -E "中文|Spec Kit CN"  # 验证中文输出
+# 測試功能
+specify-tw init test-project --ai claude    # 測試專案初始化
+specify-tw --help | grep -E "中文|Spec Kit TW"  # 驗證中文輸出
 ```
 
-### 自动化翻译工作流
+### 自動化翻譯工作流
 ```bash
-# 一键自动化翻译(推荐)
-/translation-auto      # 全自动翻译流程
+# 一鍵自動化翻譯(推薦)
+/translation-auto      # 全自動翻譯流程
 
-# 原版更新处理
-/translation-sync      # 智能同步原版更新
+# 原版更新處理
+/translation-sync      # 智慧同步原版更新
 
-# 质量管理
-/translation-qa        # 质量保证检查
-/translation-fix       # 智能修复问题
+# 品質管理
+/translation-qa        # 品質保證檢查
+/translation-fix       # 智慧修復問題
 
-# 人工审核
-/translation-review    # 人工审核(已存在)
+# 人工稽核
+/translation-review    # 人工稽核(已存在)
 /translation-workflow  # 工作流指南
 ```
 
-### 项目目录结构
+### 專案目錄結構
 ```
-项目根目录/
-├── src/specify_cli/           # 核心代码(必须同步)
-├── templates/                 # 模板文件(需要本地化)
-├── scripts/                   # 构建脚本(完全同步, 不翻译)
-├── .devcontainer/             # 开发容器配置(完全同步, 不翻译)
-├── .github/                   # CI配置(谨慎同步, 不翻译)
-├── docs/                     # 项目文档(需要本地化)
-├── memory/                    # 项目章程(需要本地化)
-├── spec-kit/                 # 原版项目(.gitignore)
-├── .claude/commands/         # 翻译自动化命令
-├── TERMINOLOGY.md            # 术语表
-├── TRANSLATION_STANDARDS.md  # 翻译标准
-├── CHANGELOG.md              # 版本记录(独立维护)
-└── CLAUDE.md                 # 项目记忆文件
+專案根目錄/
+├── src/specify_cli/           # 核心程式碼(必須同步)
+├── templates/                 # 模板檔案(需要本地化)
+├── scripts/                   # 構建指令碼(完全同步, 不翻譯)
+├── .devcontainer/             # 開發容器配置(完全同步, 不翻譯)
+├── .github/                   # CI配置(謹慎同步, 不翻譯)
+├── docs/                     # 專案文件(需要本地化)
+├── memory/                    # 專案章程(需要本地化)
+├── spec-kit/                 # 原版專案(.gitignore)
+├── .claude/commands/         # 翻譯自動化命令
+├── TERMINOLOGY.md            # 術語表
+├── TRANSLATION_STANDARDS.md  # 翻譯標準
+├── CHANGELOG.md              # 版本記錄(獨立維護)
+└── CLAUDE.md                 # 專案記憶檔案
 ```
 
-### 文件分类与处理策略
-| 类别       | 目录/文件                     | 同步策略 | 本地化策略          |
+### 檔案分類與處理策略
+| 類別       | 目錄/檔案                     | 同步策略 | 本地化策略          |
 | ---------- | ----------------------------- | -------- | ------------------- |
-| 核心代码   | `src/specify_cli/`            | 必须同步 | CLI输出信息需要中文 |
-| 模板系统   | `templates/`                  | 结构同步 | 完全中文翻译        |
-| 构建脚本   | `scripts/`                    | 完全同步 | 不翻译              |
-| 开发环境   | `.devcontainer/`              | 完全同步 | 不翻译              |
-| CI配置     | `.github/`                    | 谨慎同步 | 不翻译              |
-| 项目文档   | `docs/`, `README.md`          | 结构参考 | 完全中文翻译        |
-| 项目章程   | `memory/constitution.md`      | 结构同步 | 完全中文翻译        |
-| 原版追踪   | `spec-kit/`                   | 不提交   | 不适用              |
-| 项目描述   | `AGENTS.md`                   | 完全同步 | 不翻译              |
+| 核心程式碼   | `src/specify_cli/`            | 必須同步 | CLI輸出資訊需要中文 |
+| 模板系統   | `templates/`                  | 結構同步 | 完全中文翻譯        |
+| 構建指令碼   | `scripts/`                    | 完全同步 | 不翻譯              |
+| 開發環境   | `.devcontainer/`              | 完全同步 | 不翻譯              |
+| CI配置     | `.github/`                    | 謹慎同步 | 不翻譯              |
+| 專案文件   | `docs/`, `README.md`          | 結構參考 | 完全中文翻譯        |
+| 專案章程   | `memory/constitution.md`      | 結構同步 | 完全中文翻譯        |
+| 原版追蹤   | `spec-kit/`                   | 不提交   | 不適用              |
+| 專案描述   | `AGENTS.md`                   | 完全同步 | 不翻譯              |
 
 ---
 
-## 技术架构
+## 技術架構
 
-### 核心组件
+### 核心元件
 
-#### Specify CLI 结构 (`src/specify_cli/__init__.py`)
-**主要类和函数**: 
-- `StepTracker` - 分层步骤进度跟踪 UI 组件
-- `select_with_arrows()` - 交互式箭头键选择界面
-- `download_template_from_github()` - GitHub releases 模板下载
-- `download_and_extract_template()` - 模板下载和解压
-- `init()` - 主要项目初始化命令
-- `check()` - 工具可用性检查
+#### Specify CLI 結構 (`src/specify_cli/__init__.py`)
+**主要類和函式**: 
+- `StepTracker` - 分層步驟進度跟蹤 UI 元件
+- `select_with_arrows()` - 互動式箭頭鍵選擇介面
+- `download_template_from_github()` - GitHub releases 模板下載
+- `download_and_extract_template()` - 模板下載和解壓
+- `init()` - 主要專案初始化命令
+- `check()` - 工具可用性檢查
 
-**关键特性**: 
-- 支持多种 AI 编码助手
-- 实时进度跟踪和树形显示
-- 跨平台支持(Linux/macOS/Windows)
-- 自动脚本权限设置(POSIX)
-- Git 仓库自动初始化
+**關鍵特性**: 
+- 支援多種 AI 編碼助手
+- 即時進度跟蹤和樹形顯示
+- 跨平臺支援(Linux/macOS/Windows)
+- 自動指令碼許可權設定(POSIX)
+- Git 倉庫自動初始化
 
 ### 同步策略
-**核心策略**: 采用"**核心同步, 界面本地化**"的策略, 确保与原版功能完全对等的同时, 为中文用户提供友好的母语界面.
+**核心策略**: 採用"**核心同步, 介面本地化**"的策略, 確保與原版功能完全對等的同時, 為中文使用者提供友好的母語介面.
 
-#### 必须同步的内容
-- ✅ **所有类和函数名称**
-- ✅ **方法签名和参数**: 完全与原版一致, 确保功能对等
-- ✅ **核心算法逻辑**: 模板下载、解压、Git初始化等核心流程
-- ✅ **依赖库和版本**: typer、rich、httpx 等依赖保持同步
-- ✅ **AI助手支持**: 所有AI助手的支持逻辑完全一致
-- ✅ **构建配置**: hatchling 构建系统保持同步
+#### 必須同步的內容
+- ✅ **所有類和函式名稱**
+- ✅ **方法簽名和引數**: 完全與原版一致, 確保功能對等
+- ✅ **核心演算法邏輯**: 模板下載、解壓、Git初始化等核心流程
+- ✅ **依賴庫和版本**: typer、rich、httpx 等依賴保持同步
+- ✅ **AI助手支援**: 所有AI助手的支援邏輯完全一致
+- ✅ **構建配置**: hatchling 構建系統保持同步
 
-#### 需要本地化的内容
-- 📝 **品牌标识**: 包名、命令名、GitHub仓库、横幅标语
-- 📝 **用户界面文本**: 错误消息、状态提示、交互界面
-- 📝 **帮助文档**: 使用说明、操作指导、调试信息
-- 📝 **输出信息**: CLI 输出、进度显示、工具检查结果
+#### 需要本地化的內容
+- 📝 **品牌標識**: 包名、命令名、GitHub倉庫、橫幅標語
+- 📝 **使用者介面文字**: 錯誤訊息、狀態提示、互動介面
+- 📝 **幫助文件**: 使用說明、操作指導、除錯資訊
+- 📝 **輸出資訊**: CLI 輸出、進度顯示、工具檢查結果
 
-### AI 助手支持
-| 助手           | CLI 工具       | 目录格式               | 命令格式 | 类型   |
+### AI 助手支援
+| 助手           | CLI 工具       | 目錄格式               | 命令格式 | 型別   |
 | -------------- | -------------- | ---------------------- | -------- | ------ |
 | Claude Code    | `claude`       | `.claude/commands/`    | Markdown | CLI    |
 | Gemini CLI     | `gemini`       | `.gemini/commands/`    | TOML     | CLI    |
-| GitHub Copilot | 无(IDE 集成) | `.github/prompts/`     | Markdown | IDE    |
+| GitHub Copilot | 無(IDE 整合) | `.github/prompts/`     | Markdown | IDE    |
 | Cursor         | `cursor-agent` | `.cursor/commands/`    | Markdown | CLI    |
 | Qwen Code      | `qwen`         | `.qwen/commands/`      | TOML     | CLI    |
 | opencode       | `opencode`     | `.opencode/command/`   | Markdown | CLI    |
-| Windsurf       | 无(IDE 集成) | `.windsurf/workflows/` | Markdown | IDE    |
+| Windsurf       | 無(IDE 整合) | `.windsurf/workflows/` | Markdown | IDE    |
 | Codex          | `codex`        | `.codex/`              | Markdown | CLI    |
 | Kilocode       | `kilocode`     | `.kilocode/`           | Markdown | CLI    |
 | Auggie         | `auggie`       | `.auggie/`             | Markdown | CLI    |
@@ -146,24 +146,24 @@ specify-cn --help | grep -E "中文|Spec Kit CN"  # 验证中文输出
 
 ---
 
-## 开发环境配置 (.devcontainer/)
+## 開發環境配置 (.devcontainer/)
 
 ### Devcontainer 概述
-`.devcontainer/` 目录是 v0.0.78 新增的开发容器配置，提供完整的开发环境自动化设置。
+`.devcontainer/` 目錄是 v0.0.78 新增的開發容器配置，提供完整的開發環境自動化設定。
 
-### 配置文件结构
+### 配置檔案結構
 ```
 .devcontainer/
-├── devcontainer.json     # 主配置文件，定义容器环境和工具
-└── post-create.sh       # 容器创建后自动执行脚本
+├── devcontainer.json     # 主配置檔案，定義容器環境和工具
+└── post-create.sh       # 容器建立後自動執行指令碼
 ```
 
 ### 核心功能
-- **预配置开发环境**: Python 3.13 + uv 包管理器
-- **AI助手自动安装**: 自动安装所有支持的AI编码助手
-- **VS Code集成**: 预装必要的扩展和设置
-- **多语言支持**: Node.js, .NET, Git 等开发工具
-- **端口转发**: 8080端口用于文档站点预览
+- **預配置開發環境**: Python 3.13 + uv 包管理器
+- **AI助手自動安裝**: 自動安裝所有支援的AI編碼助手
+- **VS Code整合**: 預裝必要的擴充套件和設定
+- **多語言支援**: Node.js, .NET, Git 等開發工具
+- **埠轉發**: 8080埠用於文件站點預覽
 
 ### 包含的AI助手
 - GitHub Copilot CLI
@@ -177,149 +177,149 @@ specify-cn --help | grep -E "中文|Spec Kit CN"  # 验证中文输出
 - CodeBuddy CLI
 
 ### 使用方式
-1. 在 VS Code 中打开项目
-2. 提示"在容器中重新打开"时选择确定
-3. 等待容器构建和脚本执行完成
-4. 所有AI助手将自动安装并可用
+1. 在 VS Code 中開啟專案
+2. 提示"在容器中重新開啟"時選擇確定
+3. 等待容器構建和指令碼執行完成
+4. 所有AI助手將自動安裝並可用
 
 ### 同步策略
-- **完全同步**: 与原版保持100%一致
-- **不翻译**: 所有配置文件保持英文
-- **自动更新**: 随原版版本同步更新
+- **完全同步**: 與原版保持100%一致
+- **不翻譯**: 所有配置檔案保持英文
+- **自動更新**: 隨原版版本同步更新
 
 ---
 
-## 维护工作流程
+## 維護工作流程
 
-### 自动化翻译工作流
+### 自動化翻譯工作流
 
-#### 推荐使用流程
-1. **首次设置**: `/translation-auto` 执行完整翻译
-2. **原版更新**: `/translation-sync` 智能同步更新
-3. **日常维护**: `/translation-qa` + `/translation-fix` 质量管理
-4. **发布检查**: `/translation-review` 最终审核
+#### 推薦使用流程
+1. **首次設定**: `/translation-auto` 執行完整翻譯
+2. **原版更新**: `/translation-sync` 智慧同步更新
+3. **日常維護**: `/translation-qa` + `/translation-fix` 品質管理
+4. **釋出檢查**: `/translation-review` 最終稽核
 
 #### 工作流特性
-- **90%+ 自动化**: 大幅减少人工干预
-- **智能检测**: 自动识别翻译需求和质量问题
-- **增量更新**: 仅处理变更内容, 保持现有翻译稳定
-- **质量保证**: 多层检查确保翻译质量
-- **安全机制**: 分支操作、自动备份、渐进式发布
+- **90%+ 自動化**: 大幅減少人工干預
+- **智慧檢測**: 自動識別翻譯需求和品質問題
+- **增量更新**: 僅處理變更內容, 保持現有翻譯穩定
+- **品質保證**: 多層檢查確保翻譯品質
+- **安全機制**: 分支操作、自動備份、漸進式釋出
 
 ### 版本同步策略
 
-#### 基本原则
-- **版本号**: 本项目tag单独迭代, 不需要和原版同步
-- **功能同步**: 定期从上游合并, 不添加新功能
-- **发布节奏**: 跟随原版发布, 不独立发布新功能
+#### 基本原則
+- **版本號**: 本專案tag單獨迭代, 不需要和原版同步
+- **功能同步**: 定期從上游合併, 不新增新功能
+- **釋出節奏**: 跟隨原版釋出, 不獨立釋出新功能
 
-#### 同步机制
-**spec-kit 目录工作机制**: 
+#### 同步機制
+**spec-kit 目錄工作機制**: 
 ```
-项目根目录/
-├── spec-kit/              # 原版项目目录(.gitignore)
-│   ├── .git/             # 原版 git 历史
-│   ├── src/              # 原版源代码
+專案根目錄/
+├── spec-kit/              # 原版專案目錄(.gitignore)
+│   ├── .git/             # 原版 git 歷史
+│   ├── src/              # 原版原始碼
 │   ├── templates/        # 原版模板
 │   └── ...
-├── .gitignore            # 忽略 spec-kit/ 目录
-└── ...                   # 本项目文件
+├── .gitignore            # 忽略 spec-kit/ 目錄
+└── ...                   # 本專案檔案
 ```
 
 **同步工作流程**:
-1. 检查当前版本对应的原版 tag/commit
-2. 在 `spec-kit/` 目录检出对应原版版本
+1. 檢查當前版本對應的原版 tag/commit
+2. 在 `spec-kit/` 目錄檢出對應原版版本
 3. 完全同步scripts: `rsync -avp spec-kit/scripts/ scripts/`
-4. **关键步骤**: 同步AGENTS.md: `cp spec-kit/AGENTS.md AGENTS.md`
-5. 同步开发环境配置: `rsync -avp spec-kit/.devcontainer/ .devcontainer/`
-6. 执行自动化翻译: `/translation-sync`
-7. 更新 CHANGELOG.md 记录同步信息
+4. **關鍵步驟**: 同步AGENTS.md: `cp spec-kit/AGENTS.md AGENTS.md`
+5. 同步開發環境配置: `rsync -avp spec-kit/.devcontainer/ .devcontainer/`
+6. 執行自動化翻譯: `/translation-sync`
+7. 更新 CHANGELOG.md 記錄同步資訊
 
-#### AGENTS.md 比对的重要性
-- 原版 `AGENTS.md` 包含最新的 AI 助手支持信息和技术细节
-- 每次同步时必须比对, 确保项目记忆的准确性
-- 重点关注: 新助手支持、版本管理要求、集成步骤变化
+#### AGENTS.md 比對的重要性
+- 原版 `AGENTS.md` 包含最新的 AI 助手支援資訊和技術細節
+- 每次同步時必須比對, 確保專案記憶的準確性
+- 重點關注: 新助手支援、版本管理要求、整合步驟變化
 
 ### 版本管理要求
-- **重要**: 任何对 `src/specify_cli/__init__.py` 的修改都需要: 
-  - 更新 `pyproject.toml` 中的版本号
-  - 在 `CHANGELOG.md` 中添加相应条目
-  - 同步原版更新时记录对应的原版提交信息
+- **重要**: 任何對 `src/specify_cli/__init__.py` 的修改都需要: 
+  - 更新 `pyproject.toml` 中的版本號
+  - 在 `CHANGELOG.md` 中新增相應條目
+  - 同步原版更新時記錄對應的原版提交資訊
 
-### CHANGELOG 维护
-**维护原则**: 
-- `CHANGELOG.md` 由本项目独立维护, 不与原版同步
-- 记录每个版本同步的原版信息和中文本地化更新
-
----
-
-## 翻译标准和质量保证
-
-### 翻译标准文件
-- **@TRANSLATION_STANDARDS.md**: 详细的翻译标准和规范
-- **@TERMINOLOGY.md**: 标准术语表, 确保翻译一致性
-
-### 核心翻译原则
-- **用户导向**: 面向中文开发者, 翻译用户界面和文档
-- **技术保留**: 代码层面保持英文, 确保技术准确性
-- **功能对等**: 翻译后功能必须与原版完全一致
-- **术语一致**: 严格遵循术语表, 保持翻译一致性
-
-### 本地化范围
-**需要完全中文本地化的内容**: 
-- 用户文档: `README.md`、`spec-driven.md`、`docs/` 目录
-- 模板系统: `templates/` 和 `templates/commands/` 目录下的所有文件
-- 项目章程: `memory/constitution.md`(包括占位符和说明文本)
-- CLI 界面: `src/specify_cli/` 中的输出信息、帮助文本、错误消息
-
-**保持英文不翻译的内容**:
-- 构建脚本: `scripts/` 目录(完全同步原版)
-- 开发环境: `.devcontainer/` 目录(完全同步原版)
-- 媒体资源: `media/` 目录(完全同步原版)
-- CI配置: `.github/` 目录(谨慎同步, 不翻译)
-- 代码层面: 变量名、函数名、类名等标识符
-- 章程占位符: 如 `[PROJECT_NAME]`、`[PRINCIPLE_1_NAME]` 等(保持原格式)
-
-### 质量保证机制
-- **自动化检查**: `/translation-qa` 进行全面质量检查
-- **智能修复**: `/translation-fix` 自动修复常见问题
-- **人工审核**: `/translation-review` 最终质量把关
-- **持续改进**: 基于用户反馈持续优化翻译质量
+### CHANGELOG 維護
+**維護原則**: 
+- `CHANGELOG.md` 由本專案獨立維護, 不與原版同步
+- 記錄每個版本同步的原版資訊和中文字地化更新
 
 ---
 
-## 打包发布
+## 翻譯標準和品質保證
 
-**发布触发**: 推送格式为 `v*.*.*` 的 tag 时自动触发 GitHub Actions, push 到 main 分支不会触发.
+### 翻譯標準檔案
+- **@TRANSLATION_STANDARDS.md**: 詳細的翻譯標準和規格
+- **@TERMINOLOGY.md**: 標準術語表, 確保翻譯一致性
 
-**版本规则**: Tag 使用 `v0.0.85` 格式, 生成的包名去掉 v 前缀为 `spec-kit-template-*-0.0.85.zip`.
+### 核心翻譯原則
+- **使用者導向**: 面向中文開發者, 翻譯使用者介面和文件
+- **技術保留**: 程式碼層面保持英文, 確保技術準確性
+- **功能對等**: 翻譯後功能必須與原版完全一致
+- **術語一致**: 嚴格遵循術語表, 保持翻譯一致性
 
-**发布命令**: `git tag v0.0.85 && git push origin v0.0.85` 即可自动创建包含 24 个包的完整 release.
+### 本地化範圍
+**需要完全中文字地化的內容**: 
+- 使用者文件: `README.md`、`spec-driven.md`、`docs/` 目錄
+- 模板系統: `templates/` 和 `templates/commands/` 目錄下的所有檔案
+- 專案章程: `memory/constitution.md`(包括佔位符和說明文字)
+- CLI 介面: `src/specify_cli/` 中的輸出資訊、幫助文字、錯誤訊息
+
+**保持英文不翻譯的內容**:
+- 構建指令碼: `scripts/` 目錄(完全同步原版)
+- 開發環境: `.devcontainer/` 目錄(完全同步原版)
+- 媒體資源: `media/` 目錄(完全同步原版)
+- CI配置: `.github/` 目錄(謹慎同步, 不翻譯)
+- 程式碼層面: 變數名、函式名、類名等識別符號
+- 章程佔位符: 如 `[PROJECT_NAME]`、`[PRINCIPLE_1_NAME]` 等(保持原格式)
+
+### 品質保證機制
+- **自動化檢查**: `/translation-qa` 進行全面品質檢查
+- **智慧修復**: `/translation-fix` 自動修復常見問題
+- **人工稽核**: `/translation-review` 最終品質把關
+- **持續改進**: 基於使用者反饋持續最佳化翻譯品質
 
 ---
 
-## 紧急情况处理
+## 打包釋出
 
-### 常见问题解决方案
-1. **同步冲突**: 优先保留原版功能, 仅在本地化内容上保留修改
-2. **版本不一致**: 检查 `pyproject.toml` 和 `CHANGELOG.md`
-3. **功能异常**: 对比原版项目, 确认是否为同步问题
-4. **翻译质量问题**: 使用 `/translation-fix` 智能修复
+**釋出觸發**: 推送格式為 `v*.*.*` 的 tag 時自動觸發 GitHub Actions, push 到 main 分支不會觸發.
+
+**版本規則**: Tag 使用 `v0.0.85` 格式, 生成的包名去掉 v 字首為 `spec-kit-template-*-0.0.85.zip`.
+
+**釋出命令**: `git tag v0.0.85 && git push origin v0.0.85` 即可自動建立包含 24 個包的完整 release.
 
 ---
 
-## 参考链接
+## 緊急情況處理
 
-- **原版项目**: [github/spec-kit](https://github.com/github/spec-kit)
-- **原版文档**: [spec-kit/docs](https://github.com/github/spec-kit/tree/main/docs)
-- **原版项目标书**: [spec-kit/AGENTS.md](https://github.com/github/spec-kit/blob/main/AGENTS.md)
+### 常見問題解決方案
+1. **同步衝突**: 優先保留原版功能, 僅在本地化內容上保留修改
+2. **版本不一致**: 檢查 `pyproject.toml` 和 `CHANGELOG.md`
+3. **功能異常**: 對比原版專案, 確認是否為同步問題
+4. **翻譯品質問題**: 使用 `/translation-fix` 智慧修復
+
+---
+
+## 參考連結
+
+- **原版專案**: [github/spec-kit](https://github.com/github/spec-kit)
+- **原版文件**: [spec-kit/docs](https://github.com/github/spec-kit/tree/main/docs)
+- **原版專案標書**: [spec-kit/AGENTS.md](https://github.com/github/spec-kit/blob/main/AGENTS.md)
 - **GitHub Releases**: [spec-kit/releases](https://github.com/github/spec-kit/releases)
-- **中文版仓库**: [linfee/spec-kit-cn](https://github.com/linfee/spec-kit-cn)
-- **翻译标准**: @TRANSLATION_STANDARDS.md
-- **术语表**: @TERMINOLOGY.md
+- **中文版倉庫**: [rackliu/spec-kit-tw](https://github.com/rackliu/spec-kit-tw)
+- **翻譯標準**: @TRANSLATION_STANDARDS.md
+- **術語表**: @TERMINOLOGY.md
 
 ## 其他Rule
 
-- 原版项目位于`./spec-kit`, 如果没有, 就将它克隆到这个位置, 始终从该位置访问原版文件
-- 同步src下脚本文件时, 务必将repo_name和repo_user替换为本项目的
-- 记得在提交代码前更新README.md中的版本信息
+- 原版專案位於`./spec-kit`, 如果沒有, 就將它克隆到這個位置, 始終從該位置訪問原版檔案
+- 同步src下指令碼檔案時, 務必將repo_name和repo_user替換為本專案的
+- 記得在提交程式碼前更新README.md中的版本資訊

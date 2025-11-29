@@ -1,31 +1,31 @@
 ---
-description: 将现有任务转换为可操作的、按依赖关系排序的 GitHub 议题，基于可用的设计制品。
+description: 將現有任務轉換為可操作的、按依賴關係排序的 GitHub 議題，基於可用的設計製品。
 tools: ['github/github-mcp-server/issue_write']
 scripts:
   sh: scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks
   ps: scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks
 ---
 
-## 用户输入
+## 使用者輸入
 
 ```text
 $ARGUMENTS
 ```
 
-你必须**在继续之前考虑用户输入**（如果非空）。
+你必須**在繼續之前考慮使用者輸入**（如果非空）。
 
-## 大纲
+## 大綱
 
-1. 从仓库根目录运行 `{SCRIPT}` 并解析 FEATURE_DIR 和 AVAILABLE_DOCS 列表。所有路径必须是绝对路径。对于参数中的单引号如 "I'm Groot"，使用转义语法：例如 'I'\''m Groot'（或尽可能使用双引号："I'm Groot"）。
-1. 从执行的脚本中，提取 **任务** 的路径。
-1. 通过运行以下命令获取 Git 远程仓库：
+1. 從倉庫根目錄執行 `{SCRIPT}` 並解析 FEATURE_DIR 和 AVAILABLE_DOCS 列表。所有路徑必須是絕對路徑。對於引數中的單引號如 "I'm Groot"，使用轉義語法：例如 'I'\''m Groot'（或儘可能使用雙引號："I'm Groot"）。
+1. 從執行的指令碼中，提取 **任務** 的路徑。
+1. 透過執行以下命令獲取 Git 遠端倉庫：
 
 ```bash
 git config --get remote.origin.url
 ```
 
-**仅当远程仓库是 GITHUB URL 时才继续下一步**
+**僅當遠端倉庫是 GITHUB URL 時才繼續下一步**
 
-1. 对于列表中的每个任务，使用 GitHub MCP 服务器在与 Git 远程仓库对应的仓库中创建一个新议题。
+1. 對於列表中的每個任務，使用 GitHub MCP 伺服器在與 Git 遠端倉庫對應的倉庫中建立一個新議題。
 
-**在任何情况下都不要在与远程 URL 不匹配的仓库中创建议题**
+**在任何情況下都不要在與遠端 URL 不匹配的倉庫中建立議題**
