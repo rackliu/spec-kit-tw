@@ -16,6 +16,7 @@
 </p>
 
 > **💡 這是 [GitHub Spec Kit](https://github.com/github/spec-kit) 的官方中文復刻版本**
+> ** 部分內容來自：https://github.com/doggy8088/spec-kit
 > 
 > **🔄 對應原版版本**: [v0.0.85](https://github.com/github/spec-kit/releases/tag/v0.0.85)
 > 

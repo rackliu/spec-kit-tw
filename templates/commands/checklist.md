@@ -1,267 +1,239 @@
 ---
-description: 基於使用者需求為當前功能生成自定義檢查清單.
+description: 根據用戶需求，為當前功能產生自訂檢查清單。
 scripts:
   sh: scripts/bash/check-prerequisites.sh --json
   ps: scripts/powershell/check-prerequisites.ps1 -Json
 ---
 
-## 清單目的: "需求編寫的單元測試"
+## 檢查清單目的：「英文單元測試」
 
-**核心概念**: 清單是**需求編寫的單元測試** - 它們驗證特定領域中需求的品質、清晰度和完整性.
+**關鍵概念**：檢查清單是**需求撰寫的單元測試**——用來驗證特定領域中需求的品質、清晰度與完整性。
 
-**不用於驗證/測試**: 
-- ❌ 不是"驗證按鈕點選正確"
-- ❌ 不是"測試錯誤處理有效"
-- ❌ 不是"確認 API 返回 200"
-- ❌ 不是檢查程式碼/實現是否符合規格
+**不是用於驗證／測試**：
 
-**用於需求品質驗證**: 
-- ✅ "是否為所有卡片型別定義了視覺層次需求？"(完整性)
-- ✅ "'突出顯示'是否透過具體尺寸/位置進行了量化？"(清晰度)
-- ✅ "所有互動元素的懸停狀態需求是否一致？"(一致性)
-- ✅ "是否為鍵盤導航定義了可訪問性需求？"(覆蓋度)
-- ✅ "規格是否定義了 logo 影像載入失敗時的處理？"(邊緣情況)
+- ❌ 不是「驗證按鈕是否能正確點擊」
+- ❌ 不是「測試錯誤處理是否正常」
+- ❌ 不是「確認 API 回傳 200」
+- ❌ 不是檢查程式碼／實作是否符合規格
 
-**比喻**: 如果你的規格是用英文編寫的程式碼, 那麼清單就是它的單元測試套件. 你測試的是需求是否編寫良好、完整、明確並準備好實施 - 而不是實現是否有效.
+**用於需求品質驗證**：
 
-## 使用者輸入
+- ✅「所有卡片類型是否都有定義視覺階層需求？」（完整性）
+- ✅「『明顯顯示』是否以具體尺寸／位置量化？」（清晰度）
+- ✅「所有互動元素的 hover 狀態需求是否一致？」（一致性）
+- ✅「是否有定義鍵盤導覽的無障礙需求？」（覆蓋範圍）
+- ✅「規格是否有定義 logo 圖片載入失敗時的處理？」（邊界情境）
+
+**比喻**：如果你的規格像是用英文寫的程式碼，檢查清單就是它的單元測試套件。你是在測試需求是否寫得好、是否完整、明確且可直接實作——而不是測試實作本身是否可用。
+
+## 用戶輸入
 
 ```text
 $ARGUMENTS
 ```
 
-在繼續之前, 你**必須**考慮使用者輸入(如果不為空).
+你在執行前**必須**考慮用戶輸入（若非空）。
 
-## 執行步驟
+# 執行步驟
 
-1. **設定**: 從倉庫根目錄執行 `{SCRIPT}` 並解析JSON以獲取FEATURE_DIR和AVAILABLE_DOCS列表.
-   - 所有檔案路徑必須是絕對路徑.
-   - 對於引數中的單引號如"I'm Groot", 使用轉義語法: 例如 'I'\''m Groot'(或者儘可能使用雙引號: "I'm Groot").
+## Execution Steps
 
-2. **澄清意圖(動態)**: 推導最多三個初始上下文澄清問題(無預編目錄). 它們必須: 
-   - 從使用者的表述 + 從規格/計劃/任務中提取的訊號生成
-   - 只詢問實質上改變清單內容的資訊
-   - 如果在`$ARGUMENTS`中已經明確, 則單獨跳過
-   - 優先考慮精確性而非廣度
+1. **初始化**：從 repo 根目錄執行 `{SCRIPT}`，並解析 JSON 以取得 FEATURE_DIR 與 AVAILABLE_DOCS 清單。
+   - 所有檔案路徑必須為絕對路徑。
+   - 若引數中有單引號（如 "I'm Groot"），請使用跳脫語法：例如 `'I'\''m Groot'`（或若可行則用雙引號："I'm Groot"）。
 
-   Generation algorithm:
-   1. Extract signals: feature domain keywords (e.g., auth, latency, UX, API), risk indicators ("critical", "must", "compliance"), stakeholder hints ("QA", "review", "security team"), and explicit deliverables ("a11y", "rollback", "contracts").
-   2. Cluster signals into candidate focus areas (max 4) ranked by relevance.
-   3. Identify probable audience & timing (author, reviewer, QA, release) if not explicit.
-   4. Detect missing dimensions: scope breadth, depth/rigor, risk emphasis, exclusion boundaries, measurable acceptance criteria.
-   5. Formulate questions chosen from these archetypes:
-      - Scope refinement (e.g., "Should this include integration touchpoints with X and Y or stay limited to local module correctness?")
-      - Risk prioritization (e.g., "Which of these potential risk areas should receive mandatory gating checks?")
-      - Depth calibration (e.g., "Is this a lightweight pre-commit sanity list or a formal release gate?")
-      - Audience framing (e.g., "Will this be used by the author only or peers during PR review?")
-      - Boundary exclusion (e.g., "Should we explicitly exclude performance tuning items this round?")
-      - Scenario class gap (e.g., "No recovery flows detected—are rollback / partial failure paths in scope?")
+2. **釐清意圖（動態）**：根據上下文產生最多三個初步釐清問題（不得使用預設題庫）。這些問題**必須**：
+   - 依據用戶的描述＋從規格/計畫/任務中提取的訊號動態生成
+   - 僅詢問會實質影響檢查清單內容的資訊
+   - 若在 `$ARGUMENTS` 中已明確，則個別問題可跳過
+   - 以精確度優先於廣度
 
-   Question formatting rules:
-   - If presenting options, generate a compact table with columns: Option | Candidate | Why It Matters
-   - Limit to A–E options maximum; omit table if a free-form answer is clearer
-   - Never ask the user to restate what they already said
-   - Avoid speculative categories (no hallucination). If uncertain, ask explicitly: "Confirm whether X belongs in scope."
+   生成演算法：
+   1. 提取訊號：功能領域關鍵字（如 auth、latency、UX、API）、風險指標（如 "critical"、"must"、"compliance"）、利害關係人提示（如 "QA"、"review"、"security team"）、明確交付項（如 "a11y"、"rollback"、"contracts"）。
+   2. 將訊號分群為候選重點領域（最多 4 組），依相關性排序。
+   3. 若未明確，判斷可能的目標對象與時機（作者、審查者、QA、發佈）。
+   4. 偵測缺漏面向：範圍廣度、深度/嚴謹度、風險強調、排除邊界、可衡量的驗收標準。
+   5. 依下列問題原型擇一組成問題：
+      - 範圍細化（如：「此檢查清單是否需涵蓋與 X、Y 的整合接點，還是僅限於本地模組正確性？」）
+      - 風險優先排序（如：「這些潛在風險區塊中，哪些需要強制設置檢查關卡？」）
+      - 深度校準（如：「這是 pre-commit 的輕量 sanity list 還是正式發佈的 release gate？」）
+      - 目標對象定位（如：「這份檢查清單僅作者自用，還是 PR 審查時同儕也會用？」）
+      - 邊界排除（如：「本輪是否明確排除效能調校項目？」）
+      - 情境類型缺口（如：「未偵測到復原流程——rollback／部分失敗路徑是否納入範圍？」）
 
-   Defaults when interaction impossible:
-   - Depth: Standard
-   - Audience: Reviewer (PR) if code-related; Author otherwise
-   - Focus: Top 2 relevance clusters
+   問題格式規則：
+   - 若有選項，請產生精簡表格，欄位：Option | Candidate | Why It Matters
+   - 最多僅列 A–E 選項；若開放式回答更清楚則不需表格
+   - 絕不要求用戶重述已說過的內容
+   - 避免臆測分類（不得憑空想像）。若不確定，請明確詢問：「請確認 X 是否屬於範圍內。」
 
-   Output the questions (label Q1/Q2/Q3). After answers: if ≥2 scenario classes (Alternate / Exception / Recovery / Non-Functional domain) remain unclear, you MAY ask up to TWO more targeted follow‑ups (Q4/Q5) with a one-line justification each (e.g., "Unresolved recovery path risk"). Do not exceed five total questions. Skip escalation if user explicitly declines more.
+   若無法互動時的預設值：
+   - 深度：標準
+   - 目標對象：如與程式碼相關則為 Reviewer（PR），否則為 Author
+   - 重點：前兩大相關性分群
 
-3. **理解使用者請求**: 結合 `$ARGUMENTS` + 澄清答案: 
-   - 推導清單主題(例如: security, review, deploy, ux)
-   - 整合使用者明確提到的必需專案
-   - 將焦點選擇對映到類別框架
-   - 從規格/計劃/任務中推斷任何缺失的上下文(不要虛構)
+   輸出問題時請標示 Q1/Q2/Q3。回覆後：若有兩類以上情境（Alternate／Exception／Recovery／Non-Functional 領域）仍不明確，你**可以**再追問最多兩個精準後續問題（Q4/Q5），每題附一句理由（如：「復原路徑風險未解決」）。總題數不得超過五題。若用戶明確拒絕，則不得繼續追問。
 
-4. **載入功能上下文**: 從 FEATURE_DIR 讀取: 
-   - spec.md: 功能需求和範圍
-   - plan.md(如果存在): 技術細節、依賴關係
-   - tasks.md(如果存在): 實施任務
+3. **理解用戶需求**：結合 `$ARGUMENTS` 與釐清回覆：
+   - 推導檢查清單主題（如 security、review、deploy、ux）
+   - 彙整用戶明確指定的 must-have 項目
+   - 將重點選擇映射至分類結構
+   - 從規格/計畫/任務中推斷缺漏上下文（**不得憑空想像**）
 
-   **上下文載入策略**: 
-   - 僅載入與活動焦點區域相關的必要部分(避免全文轉儲)
-   - 優先將長部分總結為簡潔的場景/需求要點
-   - 使用漸進式披露: 僅在檢測到差距時新增後續檢索
-   - 如果源文件很大, 生成臨時摘要專案而不是嵌入原始文字
+4. **載入功能上下文**：從 FEATURE_DIR 讀取：
+   - spec.md：功能需求與範圍
+   - plan.md（如有）：技術細節、相依性
+   - tasks.md（如有）：實作任務
 
-5. **生成清單** - 建立"需求的單元測試": 
-   - Create `FEATURE_DIR/checklists/` directory if it doesn't exist
-   - Generate unique checklist filename:
-     - Use short, descriptive name based on domain (e.g., `ux.md`, `api.md`, `security.md`)
-     - Format: `[domain].md` 
-     - If file exists, append to existing file
-   - Number items sequentially starting from CHK001
-   - Each `/speckit.checklist` run creates a NEW file (never overwrites existing checklists)
+   **上下文載入策略**：
+   - 僅載入與當前重點領域相關的必要部分（避免整份檔案傾倒）
+   - 長段落請優先摘要為精簡的情境／需求條列
+   - 採漸進式揭露：僅在發現缺口時再補充檢索
+   - 若原始文件過大，請產生中繼摘要條目，勿直接嵌入原文
 
-   **核心原則 - 測試需求, 而非實現**: 
-   每個清單專案必須評估需求本身, 檢查: 
-   - **完整性**: 所有必要的需求是否存在？
-   - **清晰度**: 需求是否明確無歧義且具體？
-   - **一致性**: 需求之間是否相互一致？
-   - **可測量性**: 需求是否可以客觀驗證？
-   - **覆蓋度**: 是否涵蓋了所有場景/邊緣情況？
+5. **產生檢查清單**－建立「需求單元測試」：
+   - 若 `FEATURE_DIR/checklists/` 目錄不存在則建立
+   - 產生唯一的檢查清單檔名：
+     - 依領域選用簡短、具描述性的名稱（如 `ux.md`、`api.md`、`security.md`）
+     - 格式：`[domain].md`
+     - 若檔案已存在，則附加於現有檔案
+   - 條目依序編號，從 CHK001 開始
+   - 每次執行 `/speckit.checklist` 都會建立新檔案（**絕不覆蓋**現有檢查清單）
 
-   **類別結構** - 按需求品質維度分組專案: 
-   - **需求完整性**(所有必要的需求是否已記錄？)
-   - **需求清晰度**(需求是否具體且無歧義？)
-   - **需求一致性**(需求是否一致且無衝突？)
-   - **驗收標準品質**(成功標準是否可測量？)
-   - **場景覆蓋度**(是否涵蓋了所有流程/情況？)
-   - **邊緣情況覆蓋度**(是否定義了邊界條件？)
-   - **非功能性需求**(效能、安全性、可訪問性等 - 是否已指定？)
-   - **依賴關係和假設**(是否已記錄和驗證？)
-   - **歧義和衝突**(什麼 NEEDS CLARIFICATION？)
+   **核心原則－測試需求本身，而非實作**：
+   每一條檢查清單項目**必須**針對「需求本身」進行檢驗，涵蓋：
+   - **完整性**：所有必要需求是否齊全？
+   - **明確性**：需求是否明確且具體？
+   - **一致性**：需求間是否相互一致？
+   - **可衡量性**：需求是否可客觀驗證？
+   - **覆蓋性**：所有情境／邊界案例是否涵蓋？
 
-   **如何編寫清單專案 - "需求編寫的單元測試"**: 
-   
-   ❌ **WRONG** (Testing implementation):
-   - "Verify landing page displays 3 episode cards"
-   - "Test hover states work on desktop"
-   - "Confirm logo click navigates home"
-   
-   ✅ **CORRECT** (Testing requirements quality):
-   - "Are the exact number and layout of featured episodes specified?" [Completeness]
-   - "Is 'prominent display' quantified with specific sizing/positioning?" [Clarity]
-   - "Are hover state requirements consistent across all interactive elements?" [Consistency]
-   - "Are keyboard navigation requirements defined for all interactive UI?" [Coverage]
-   - "Is the fallback behavior specified when logo image fails to load?" [Edge Cases]
-   - "Are loading states defined for asynchronous episode data?" [Completeness]
-   - "Does the spec define visual hierarchy for competing UI elements?" [Clarity]
-   
-   **專案結構**: 
-   Each item should follow this pattern:
-   - Question format asking about requirement quality
-   - Focus on what's WRITTEN (or not written) in the spec/plan
-   - Include quality dimension in brackets [Completeness/Clarity/Consistency/etc.]
-   - Reference spec section `[Spec §X.Y]` when checking existing requirements
-   - Use `[Gap]` marker when checking for missing requirements
-   
-   **按品質維度分類的範例**: 
-   
-   完整性: 
-   - "Are error handling requirements defined for all API failure modes? [Gap]"
-   - "Are accessibility requirements specified for all interactive elements? [Completeness]"
-   - "Are mobile breakpoint requirements defined for responsive layouts? [Gap]"
-   
-   清晰度: 
-   - "Is 'fast loading' quantified with specific timing thresholds? [Clarity, Spec §NFR-2]"
-   - "Are 'related episodes' selection criteria explicitly defined? [Clarity, Spec §FR-5]"
-   - "Is 'prominent' defined with measurable visual properties? [Ambiguity, Spec §FR-4]"
-   
-   一致性: 
-   - "Do navigation requirements align across all pages? [Consistency, Spec §FR-10]"
-   - "Are card component requirements consistent between landing and detail pages? [Consistency]"
-   
-   覆蓋度: 
-   - "Are requirements defined for zero-state scenarios (no episodes)? [Coverage, Edge Case]"
-   - "Are concurrent user interaction scenarios addressed? [Coverage, Gap]"
-   - "Are requirements specified for partial data loading failures? [Coverage, Exception Flow]"
-   
-   可測量性: 
-   - "Are visual hierarchy requirements measurable/testable? [Acceptance Criteria, Spec §FR-1]"
-   - "Can 'balanced visual weight' be objectively verified? [Measurability, Spec §FR-2]"
+   **分類結構**－依需求品質面向分組：
+   - **需求完整性**（所有必要需求是否有文件記載？）
+   - **需求明確性**（需求是否具體且無歧義？）
+   - **需求一致性**（需求間是否無衝突？）
+   - **驗收標準品質**（成功標準是否可衡量？）
+   - **情境覆蓋性**（所有流程／案例是否涵蓋？）
+   - **邊界案例覆蓋性**（邊界條件是否有定義？）
+   - **非功能性需求**（效能、安全性、無障礙等是否有規範？）
+   - **相依性與假設**（是否有記錄並驗證？）
+   - **歧義與衝突**（哪些地方需再釐清？）
 
-   **場景分類與覆蓋度**(需求品質焦點): 
-   - Check if requirements exist for: Primary, Alternate, Exception/Error, Recovery, Non-Functional scenarios
-   - For each scenario class, ask: "Are [scenario type] requirements complete, clear, and consistent?"
-   - If scenario class missing: "Are [scenario type] requirements intentionally excluded or missing? [Gap]"
-   - Include resilience/rollback when state mutation occurs: "Are rollback requirements defined for migration failures? [Gap]"
+   **如何撰寫檢查清單項目－「英文需求單元測試」**：
 
-   **可追溯性要求**: 
-   - MINIMUM: ≥80% of items MUST include at least one traceability reference
-   - Each item should reference: spec section `[Spec §X.Y]`, or use markers: `[Gap]`, `[Ambiguity]`, `[Conflict]`, `[Assumption]`
-   - If no ID system exists: "Is a requirement & acceptance criteria ID scheme established? [Traceability]"
+   ❌ **錯誤範例**（測試實作）：
+   - 「驗證首頁顯示 3 張節目卡片」
+   - 「測試桌面版 hover 狀態運作正常」
+   - 「確認點擊 logo 可回首頁」
 
-   **發現和解決問題**(需求品質問題): 
-   Ask questions about the requirements themselves:
-   - Ambiguities: "Is the term 'fast' quantified with specific metrics? [Ambiguity, Spec §NFR-1]"
-   - Conflicts: "Do navigation requirements conflict between §FR-10 and §FR-10a? [Conflict]"
-   - Assumptions: "Is the assumption of 'always available podcast API' validated? [Assumption]"
-   - Dependencies: "Are external podcast API requirements documented? [Dependency, Gap]"
-   - Missing definitions: "Is 'visual hierarchy' defined with measurable criteria? [Gap]"
+   ✅ **正確範例**（測試需求品質）：
+   - 「精選節目的數量與版面配置是否有明確規範？」【完整性】
+   - 「『顯著顯示』是否以具體尺寸／位置量化？」【明確性】
+   - 「所有互動元件的 hover 狀態需求是否一致？」【一致性】
+   - 「所有互動 UI 是否有定義鍵盤導覽需求？」【覆蓋性】
+   - 「logo 圖片載入失敗時是否有備援行為規範？」【邊界案例】
+   - 「非同步節目資料的 loading 狀態是否有定義？」【完整性】
+   - 「規格是否有定義多個 UI 元素的視覺階層？」【明確性】
 
-   **內容整合**: 
-   - Soft cap: If raw candidate items > 40, prioritize by risk/impact
-   - Merge near-duplicates checking the same requirement aspect
-   - If >5 low-impact edge cases, create one item: "Are edge cases X, Y, Z addressed in requirements? [Coverage]"
+   **項目結構**：
+   每一條目應遵循以下模式：
+   - 以「問題」形式詢問需求品質
+   - 著重於規格／計畫中「已寫」或「未寫」的內容
+   - 在括號中標示品質面向【完整性／明確性／一致性等】
+   - 檢查現有需求時引用規格章節 `[Spec §X.Y]`
+   - 檢查缺漏需求時使用 `[Gap]` 標記
 
-   **🚫 ABSOLUTELY PROHIBITED** - These make it an implementation test, not a requirements test:
-   - ❌ Any item starting with "Verify", "Test", "Confirm", "Check" + implementation behavior
-   - ❌ References to code execution, user actions, system behavior
-   - ❌ "Displays correctly", "works properly", "functions as expected"
-   - ❌ "Click", "navigate", "render", "load", "execute"
-   - ❌ Test cases, test plans, QA procedures
-   - ❌ Implementation details (frameworks, APIs, algorithms)
-   
-   **✅ REQUIRED PATTERNS** - These test requirements quality:
-   - ✅ "Are [requirement type] defined/specified/documented for [scenario]?"
-   - ✅ "Is [vague term] quantified/clarified with specific criteria?"
-   - ✅ "Are requirements consistent between [section A] and [section B]?"
-   - ✅ "Can [requirement] be objectively measured/verified?"
-   - ✅ "Are [edge cases/scenarios] addressed in requirements?"
-   - ✅ "Does the spec define [missing aspect]?"
+   **各品質面向範例**：
 
-6. **結構參考**: 按照 `templates/checklist-template.md` 中的規格模板生成清單, 包括標題、元部分、類別標題和 ID 格式. 如果模板不可用, 使用: H1 標題、purpose/created 元行、包含 `- [ ] CHK### <requirement item>` 行的 `##` 類別部分, ID 從 CHK001 開始全域性遞增.
+   完整性：
+   - 「所有 API 失敗模式的錯誤處理需求是否有定義？【缺口】」
+   - 「所有互動元件是否有無障礙需求規範？【完整性】」
+   - 「響應式版面是否有定義行動裝置斷點需求？【缺口】」
 
-7. **報告**: 輸出建立清單的完整路徑、專案數量, 並提醒使用者每次執行都會建立新檔案. 總結: 
-   - 選擇的焦點區域
-   - 深度級別
-   - 執行者/時間
-   - 任何整合的使用者明確指定的必需專案
+   明確性：
+   - 「『快速載入』是否以具體時間門檻量化？【明確性，Spec §NFR-2】」
+   - 「『相關節目』的選取標準是否有明確定義？【明確性，Spec §FR-5】」
+   - 「『顯著』是否以可衡量的視覺屬性定義？【歧義，Spec §FR-4】」
 
-**重要說明**: 每次 `/speckit.checklist` 命令呼叫都會建立一個使用簡短描述性名稱的清單檔案, 除非檔案已存在. 這允許: 
+   一致性：
+   - 「所有頁面的導覽需求是否一致？【一致性，Spec §FR-10】」
+   - 「首頁與詳情頁的卡片元件需求是否一致？【一致性】」
 
-- 建立多種不同型別的清單(例如: `ux.md`, `test.md`, `security.md`)
-- 使用簡單、易記的檔名來表明清單用途
-- 在 `checklists/` 資料夾中輕鬆識別和導航
+   覆蓋性：
+   - 「零資料狀態（無節目）是否有需求定義？【覆蓋性，邊界案例】」
+   - 「多用戶同時互動情境是否有涵蓋？【覆蓋性，缺口】」
+   - 「部分資料載入失敗時是否有需求規範？【覆蓋性，例外流程】」
 
-為避免混亂, 請使用描述性型別, 並在完成後清理過時的清單.
+   可衡量性：
+   - 「視覺階層需求是否可衡量／可測試？【驗收標準，Spec §FR-1】」
+   - 「『均衡視覺權重』是否可客觀驗證？【可衡量性，Spec §FR-2】」
 
-## 範例清單型別和範例專案
+   **情境分類與覆蓋性**（聚焦需求品質）：
+   - 檢查是否有針對：主要、替代、例外／錯誤、復原、非功能性情境的需求
+   - 每類情境都要問：「[情境類型] 的需求是否完整、明確且一致？」
+   - 若缺少某類情境：「[情境類型] 的需求是刻意排除還是遺漏？【缺口】」
+   - 有狀態變動時請納入韌性／回滾：「遷移失敗時的 rollback 需求是否有定義？【缺口】」
 
-**UX 需求品質**: `ux.md`
+   **可追溯性需求**：
+   - 最低要求：80% 以上項目**必須**包含至少一個可追溯性引用
+   - 每項目應引用：規格章節 `[Spec §X.Y]`，或使用標記：`[Gap]`、`[Ambiguity]`、`[Conflict]`、`[Assumption]`
+   - 若無 ID 系統：「是否有建立需求與驗收標準的 ID 編碼方案？【可追溯性】」
 
-範例專案(測試需求, 而非實現): 
-- "Are visual hierarchy requirements defined with measurable criteria? [Clarity, Spec §FR-1]"
-- "Is the number and positioning of UI elements explicitly specified? [Completeness, Spec §FR-1]"
-- "Are interaction state requirements (hover, focus, active) consistently defined? [Consistency]"
-- "Are accessibility requirements specified for all interactive elements? [Coverage, Gap]"
-- "Is fallback behavior defined when images fail to load? [Edge Case, Gap]"
-- "Can 'prominent display' be objectively measured? [Measurability, Spec §FR-4]"
+   **顯示並解決問題**（需求品質問題）：
+   針對需求本身提出問題：
+   - 歧義：「『快速』一詞是否有具體指標量化？【歧義，Spec §NFR-1】」
+   - 衝突：「§FR-10 與 §FR-10a 的導覽需求是否衝突？【衝突】」
+   - 假設：「『Podcast API 永遠可用』的假設是否有驗證？【假設】」
+   - 相依性：「外部 Podcast API 需求是否有記錄？【相依性，缺口】」
+   - 定義缺漏：「『視覺階層』是否有具體標準定義？【缺口】」
 
-**API 需求品質**: `api.md`
+   **內容整併**：
+   - 軟性上限：若原始候選項目超過 40 條，請依風險／影響力排序
+   - 合併重複檢查同一需求面的近似條目
+   - 若低影響邊界案例超過 5 條，請整併為一項：「需求是否涵蓋 X、Y、Z 等邊界案例？【覆蓋性】」
 
-範例專案: 
-- "Are error response formats specified for all failure scenarios? [Completeness]"
-- "Are rate limiting requirements quantified with specific thresholds? [Clarity]"
-- "Are authentication requirements consistent across all endpoints? [Consistency]"
-- "Are retry/timeout requirements defined for external dependencies? [Coverage, Gap]"
-- "Is versioning strategy documented in requirements? [Gap]"
+   **🚫 絕對禁止**－以下會讓檢查清單變成實作測試而非需求測試：
+   - ❌ 任何以「Verify」、「Test」、「Confirm」、「Check」＋實作行為開頭的項目
+   - ❌ 涉及程式碼執行、用戶操作、系統行為的描述
+   - ❌ 「顯示正確」、「運作正常」、「如預期運作」等
+   - ❌ 「點擊」、「導覽」、「渲染」、「載入」、「執行」等動詞
+   - ❌ 測試案例、測試計畫、QA 程序
+   - ❌ 實作細節（如框架、API、演算法）
 
-**效能需求品質**: `performance.md`
+   **✅ 必須遵循的模式**－這些才是檢查需求品質：
+   - ✅ 「[需求類型] 是否有針對 [情境] 定義／規範／記錄？」
+   - ✅ 「[模糊詞] 是否以具體標準量化／釐清？」
+   - ✅ 「[A 區段] 與 [B 區段] 的需求是否一致？」
+   - ✅ 「[需求] 是否可客觀衡量／驗證？」
+   - ✅ 「需求是否涵蓋 [邊界案例／情境]？」
+   - ✅ 「規格是否有定義 [缺漏面向]？」
 
-範例專案: 
-- "Are performance requirements quantified with specific metrics? [Clarity]"
-- "Are performance targets defined for all critical user journeys? [Coverage]"
-- "Are performance requirements under different load conditions specified? [Completeness]"
-- "Can performance requirements be objectively measured? [Measurability]"
-- "Are degradation requirements defined for high-load scenarios? [Edge Case, Gap]"
+6. **結構參考**：依照 `templates/checklist-template.md` 的標準模板產生檢查清單，包括標題、meta 區塊、分類標題與 ID 格式。若無模板，請採用：H1 標題、用途／建立時間 meta 行、`##` 分類區塊，內含`- [ ] CHK### <requirement item>` 條目，ID 全域遞增從 CHK001 起算。
 
-**安全需求品質**: `security.md`
+7. **報告**：輸出已建立檢查清單的完整路徑、項目數，並提醒用戶每次執行都會產生新檔案。摘要說明：
+   - 選定的重點領域
+   - 深度層級
+   - 角色／時機
+   - 已納入的用戶明確指定 must-have 項目
 
-範例專案: 
-- "Are authentication requirements specified for all protected resources? [Coverage]"
-- "Are data protection requirements defined for sensitive information? [Completeness]"
-- "Is the threat model documented and requirements aligned to it? [Traceability]"
-- "Are security requirements consistent with compliance obligations? [Consistency]"
-- "Are security failure/breach response requirements defined? [Gap, Exception Flow]"
+**重要**：每次執行 `/speckit.checklist` 指令都會以簡短、具描述性的名稱建立檢查清單檔案，除非檔案已存在。這樣可以：
 
-## 反例: 什麼不要做
+- 建立多種不同類型的檢查清單（如 `ux.md`、`test.md`、`security.md`）
+- 檔名簡潔易懂，能直接反映檢查清單用途
+- 在 `checklists/` 資料夾中易於辨識與瀏覽
 
-**❌ 錯誤 - 這些測試實現, 而非需求: **
+為避免雜亂，請使用具描述性的類型，並於完成後清理過時的檢查清單。
+
+# 檢查清單類型範例與示例項目
+
+## Example Checklist Types & Sample Items
+
+**UX 需求品質檢查清單：** `ux.md`
+
+範例項目（測試需求品質，**非**實作）：
+
+- 「視覺階層需求是否以可衡量標準定義？【明確性，Spec §FR-1】」
+- 「UI 元素的數量與位置是否有明確規範？【完整
 
 ```markdown
 - [ ] CHK001 - Verify landing page displays 3 episode cards [Spec §FR-001]
@@ -270,7 +242,7 @@ $ARGUMENTS
 - [ ] CHK004 - Check that related episodes section shows 3-5 items [Spec §FR-005]
 ```
 
-**✅ 正確 - 這些測試需求品質: **
+**✅ 正確 - 這些測試需求品質良好：**
 
 ```markdown
 - [ ] CHK001 - Are the number and layout of featured episodes explicitly specified? [Completeness, Spec §FR-001]
@@ -281,10 +253,11 @@ $ARGUMENTS
 - [ ] CHK006 - Can "visual hierarchy" requirements be objectively measured? [Measurability, Spec §FR-001]
 ```
 
-**關鍵區別: **
-- 錯誤: 測試系統是否正常工作
-- 正確: 測試需求是否編寫正確
-- 錯誤: 驗證行為
-- 正確: 驗證需求品質
-- 錯誤: "它是否做 X？"
-- 正確: "X 是否明確指定？"
+**主要差異：**
+
+- 錯誤：測試系統是否正確運作
+- 正確：測試需求是否正確撰寫
+- 錯誤：行為驗證
+- 正確：需求品質驗證
+- 錯誤：「它有做 X 嗎？」
+- 正確：「X 是否有被明確規範？」

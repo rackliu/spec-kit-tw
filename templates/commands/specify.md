@@ -1,240 +1,255 @@
 ---
-description: 從自然語言功能描述建立或更新功能規格.
-handoffs:
-  - label: 構建技術計劃
-    agent: speckit.plan
-    prompt: 為規格建立計劃。我正在構建...
-  - label: 澄清規格需求
-    agent: speckit.clarify
-    prompt: 分析規格的完整性和清晰度
-    send: true
+description: 根據自然語言的功能描述，建立或更新功能規格說明。
 scripts:
   sh: scripts/bash/create-new-feature.sh --json "{ARGS}"
   ps: scripts/powershell/create-new-feature.ps1 -Json "{ARGS}"
 ---
 
-## 使用者輸入
+## 用戶輸入
 
 ```text
 $ARGUMENTS
 ```
 
-在繼續之前, 你**必須**考慮使用者輸入(如果不為空).
+你在繼續操作前，**必須**考慮用戶輸入（若非空）。
 
-## 概述
+## 大綱
 
-使用者在觸發訊息中 `/speckit.specify` 後輸入的文字**就是**功能描述. 假設你始終可以在本次對話中訪問它, 即使下面字面上顯示 `{ARGS}`. 除非使用者提供了空命令, 否則不要要求使用者重複.
+用戶在觸發訊息中的 `/speckit.specify` 後輸入的文字**就是**功能描述。請假設即使下方出現 `{ARGS}`，你在本次對話中也總是能取得該功能描述。除非用戶下達了空指令，否則不要要求用戶重複輸入。
 
-基於該功能描述, 執行以下操作:
+根據該功能描述，請執行以下步驟：
 
-1. **為分支生成一個簡短名稱**(2-4個詞):
-   - 分析功能描述並提取最有意義的關鍵詞
-   - 建立一個2-4個詞的簡短名稱, 捕捉功能的核心
-   - 儘可能使用動-名詞格式(例如, "add-user-auth", "fix-payment-bug")
-   - 保留技術術語和縮寫(OAuth2、API、JWT等)
-   - 保持簡潔但足夠描述性, 便於快速理解功能
-   - 範例:
-     - "I want to add user authentication" → "user-auth"
-     - "Implement OAuth2 integration for the API" → "oauth2-api-integration"
-     - "Create a dashboard for analytics" → "analytics-dashboard"
-     - "Fix payment processing timeout bug" → "fix-payment-timeout"
+1. **產生一個簡潔的短名稱**（2-4 個字詞）作為分支名稱：
+   - 分析功能描述，擷取最具意義的關鍵字
+   - 建立一個 2-4 個字詞的短名稱，能夠精確傳達該功能的核心
+   - 優先採用「動作-名詞」格式（例如："add-user-auth"、"fix-payment-bug"）
+   - 保留技術術語與縮寫（如 OAuth2、API、JWT 等）
+   - 保持簡潔，同時足夠描述，讓人一眼能理解該功能
+   - 範例：
+     - 「I want to add user authentication」→「user-auth」
+     - 「Implement OAuth2 integration for the API」→「oauth2-api-integration」
+     - 「Create a dashboard for analytics」→「analytics-dashboard」
+     - 「Fix payment processing timeout bug」→「fix-payment-timeout」
 
-2. 從倉庫根目錄執行指令碼 `{SCRIPT}` **使用簡短名稱引數**並解析其 JSON 輸出以獲取 BRANCH_NAME 和 SPEC_FILE. 所有檔案路徑必須是絕對路徑.
+2. **在建立新分支前，先檢查是否已有現有分支**：
 
-   **重要說明**:
+   a. 首先，抓取所有遠端分支，以確保我們擁有最新資訊：
+      ```bash
+      git fetch --all --prune
+      ```
+   
+   b. 尋找所有來源中該 short-name 的最大 feature 編號：
+   - 遠端分支：`git ls-remote --heads origin | grep -E 'refs/heads/[0-9]+-<short-name>
+      - 本地分支：`
+   - 本地分支：`specs/[0-9]+-<short-name>`
+   - Specs 目錄：檢查符合 `{SCRIPT}` 的目錄
 
-   - 將第1步建立的2-4詞簡短名稱作為引數附加到 `{SCRIPT}` 命令, 功能描述作為最終引數.
-   - Bash 範例: `--short-name "your-generated-short-name" "功能描述內容"`
-   - PowerShell 範例: `-ShortName "your-generated-short-name" "功能描述內容"`
-   - 對於引數中包含單引號的情況(如 "I'm Groot"), 使用轉義語法: 例如 'I'\''m Groot'(或優先使用雙引號: "I'm Groot")
-   - 你必須且只能執行此指令碼一次
-   - JSON 輸出會顯示在終端中 - 請始終參考該輸出來獲取你要查詢的實際內容
+c. 決定下一個可用編號：
+   - 從上述三個來源擷取所有編號
+   - 找出最大編號 N
+   - 新分支編號使用 N+1
 
-3. 載入 `templates/spec-template.md` 以瞭解必需的章節.
+d. 執行腳本 `--number N+1`，傳入計算出的編號與 short-name：
+   - 傳遞 `--short-name "your-short-name"` 與 `{SCRIPT} --json --number 5 --short-name "user-auth" "Add user authentication"` 以及功能描述
+   - Bash 範例：`{SCRIPT} -Json -Number 5 -ShortName "user-auth" "Add user authentication"`
+   - PowerShell 範例：`templates/spec-template.md`
 
-4. 遵循此執行流程:
+**重要事項**：
+- 必須檢查三個來源（遠端分支、本地分支、Specs 目錄）以找出最大編號
+- 僅匹配與 short-name 完全相符的分支／目錄
+- 若未找到任何符合該 short-name 的分支／目錄，則從編號 1 開始
+- 每個功能只能執行此腳本一次
+- JSON 會作為終端機輸出提供——請務必參考該輸出以取得實際內容
+- JSON 輸出將包含 BRANCH_NAME 與 SPEC_FILE 路徑
+- 若參數中有單引號，如 "I'm Groot"，請使用跳脫語法：例如 `'I'\''m Groot'`（或盡可能使用雙引號："I'm Groot"）
 
-    1. 從輸入解析使用者描述
-       如果為空: 錯誤 "未提供功能描述"
-    2. 從描述中提取關鍵概念
-       識別: 參與者、操作、資料、約束
-    3. 對於不明確的方面: 
-       - 基於上下文和行業標準做出有根據的猜測
-       - 僅在以下情況下標記為 [NEEDS CLARIFICATION: 具體問題]: 
-         - 選擇顯著影響功能範圍或使用者體驗
-         - 存在多個合理的解釋且有不同的含義
-         - 沒有合理的預設值
-       - **限制: 最多 3 個 [NEEDS CLARIFICATION] 標記**
-       - 按影響優先順序排序: 範圍 > 安全/隱私 > 使用者體驗 > 技術細節
-    4. 填寫使用者場景和測試章節
-       如果沒有明確的使用者流程: 錯誤 "無法確定使用者場景"
-    5. 生成功能需求
-       每個需求必須是可測試的
-       對未指定的細節使用合理的預設值(在假設章節中記錄假設)
-    6. 定義成功標準
-       建立可衡量的、技術無關的結果
-       包括定量指標(時間、效能、數量)和定性措施(使用者滿意度、任務完成)
-       每個標準必須無需實現細節即可驗證
-    7. 識別關鍵實體(如果涉及資料)
-    8. 返回: 成功(規格準備好進行規劃)
+3. 載入 `FEATURE_DIR/checklists/requirements.md` 以了解所需章節。
 
-5. 使用模板結構將規格寫入 SPEC_FILE, 用從功能描述(引數)派生的具體細節替換佔位符, 同時保持章節順序和標題.
+4. 請依照以下執行流程操作：
 
-6. **規格品質驗證**: 編寫初始規格後, 根據品質標準進行驗證:
+   1. 從輸入解析用戶功能描述  
+      若為空：錯誤 "No feature description provided"
+   2. 從描述中擷取關鍵概念  
+      識別：角色（actors）、動作（actions）、資料（data）、限制（constraints）
+   3. 對於不明確之處：
+      - 根據上下文與產業標準做合理推測
+      - 僅在以下情況標記為 [NEEDS CLARIFICATION: 具體問題]：
+        - 選擇會顯著影響功能範圍或用戶體驗
+        - 存在多種合理解釋且影響不同
+        - 無合理預設值可用
+      - **限制：最多僅能有 3 個 [NEEDS CLARIFICATION] 標記**
+      - 釐清事項依影響力排序：範圍 > 安全性／隱私 > 用戶體驗 > 技術細節
+   4. 填寫 User Scenarios & Testing 章節  
+      若無明確用戶流程：錯誤 "Cannot determine user scenarios"
+   5. 產生 Functional Requirements  
+      每項需求必須可測試  
+      對於未明確說明的細節，採用合理預設（並於 Assumptions 章節記錄假設）
+   6. 定義 Success Criteria  
+      創建可衡量、與技術無關的成果  
+      同時包含量化指標（時間、效能、數量）與質化指標（用戶滿意度、任務完成度）  
+      每項標準必須可驗證，且不涉及實作細節
+   7. 識別 Key Entities（若涉及資料）
+   8. 回傳：SUCCESS（spec ready for planning）
 
-   a. **建立規格品質檢查清單**: 使用檢查清單模板結構在 `FEATURE_DIR/checklists/requirements.md` 生成檢查清單檔案, 包含這些驗證專案:
+5. 使用模板結構，將規格寫入 SPEC_FILE，依據功能描述（arguments）替換各佔位符，同時保留章節順序與標題。
+
+6. **規格品質驗證**：完成初步規格後，請依下列品質標準進行驗證：
+
+   a. **建立規格品質檢查清單**：於 `
+      - 本地分支：⟦C2⟧
+      - Specs 目錄：檢查符合 ` 位置，依檢查清單模板結構產生 checklist 檔案，內容包含以下驗證項目：
 
       ```markdown
-      # 規格品質檢查清單: [功能名稱]
-
-      **目的**: 在繼續規劃之前驗證規格的完整性和品質
-      **建立時間**: [日期]
-      **功能**: [指向 spec.md 的連結]
-
-      ## 內容品質
-
-      - [ ] 無實現細節(語言、框架、API)
-      - [ ] 專注於使用者價值和業務需求
-      - [ ] 為非技術利益相關者編寫
-      - [ ] 所有必需章節已完成
-
-      ## 需求完整性
-
-      - [ ] 沒有 [NEEDS CLARIFICATION] 標記剩餘
-      - [ ] 需求是可測試且明確的
-      - [ ] 成功標準是可衡量的
-      - [ ] 成功標準是技術無關的(無實現細節)
-      - [ ] 所有驗收場景已定義
-      - [ ] 邊緣情況已識別
-      - [ ] 範圍明確界定
-      - [ ] 依賴關係和假設已識別
-
-      ## 功能準備就緒
-
-      - [ ] 所有功能需求都有明確的驗收標準
-      - [ ] 使用者場景覆蓋主要流程
-      - [ ] 功能滿足成功標準中定義的可衡量結果
-      - [ ] 沒有實現細節洩漏到規格中
-
-      ## 備註
-
-      - 標記為不完整的專案需要在 `/speckit.clarify` 或 `/speckit.plan` 之前更新規格
+      # Specification Quality Checklist: [FEATURE NAME]
+      
+      **Purpose**: Validate specification completeness and quality before proceeding to planning
+      **Created**: [DATE]
+      **Feature**: [Link to spec.md]
+      
+      ## Content Quality
+      
+      - [ ] No implementation details (languages, frameworks, APIs)
+      - [ ] Focused on user value and business needs
+      - [ ] Written for non-technical stakeholders
+      - [ ] All mandatory sections completed
+      
+      ## Requirement Completeness
+      
+      - [ ] No [NEEDS CLARIFICATION] markers remain
+      - [ ] Requirements are testable and unambiguous
+      - [ ] Success criteria are measurable
+      - [ ] Success criteria are technology-agnostic (no implementation details)
+      - [ ] All acceptance scenarios are defined
+      - [ ] Edge cases are identified
+      - [ ] Scope is clearly bounded
+      - [ ] Dependencies and assumptions identified
+      
+      ## Feature Readiness
+      
+      - [ ] All functional requirements have clear acceptance criteria
+      - [ ] User scenarios cover primary flows
+      - [ ] Feature meets measurable outcomes defined in Success Criteria
+      - [ ] No implementation details leak into specification
+      
+      ## Notes
+      
+      - Items marked incomplete require spec updates before `/speckit.clarify` or `/speckit.plan`
       ```
 
-   b. **執行驗證檢查**: 根據每個檢查清單專案審查規格:
-      - 對於每個專案, 確定是否透過或失敗
-      - 記錄發現的具體問題(引用相關規格章節)
+   b. **執行驗證檢查**：根據每一項檢查清單，審查規格說明：
+      - 對每一項目，判斷是否通過或未通過
+      - 記錄發現的具體問題（引用相關規格說明段落）
 
-   c. **處理驗證結果**:
+   c. **處理驗證結果**：
 
-      - **如果所有專案都透過**: 標記檢查清單完成並繼續步驟 7
+      - **若所有項目皆通過**：標記檢查清單為完成，並進入步驟 6
 
-      - **如果專案失敗(不包括 [NEEDS CLARIFICATION])**:
-        1. 列出失敗的專案和具體問題
-        2. 更新規格以解決每個問題
-        3. 重新執行驗證直到所有專案都透過(最多 3 次迭代)
-        4. 如果 3 次迭代後仍然失敗, 在檢查清單備註中記錄剩餘問題並警告使用者
+      - **若有項目未通過（不含 [NEEDS CLARIFICATION] 標記）**：
+        1. 列出未通過的項目及具體問題
+        2. 更新規格說明以針對每個問題進行修正
+        3. 重新執行驗證，直到所有項目通過（最多 3 次循環）
+        4. 若 3 次後仍有未通過項目，請於檢查清單備註中記錄剩餘問題並提醒用戶
 
-      - **如果 [NEEDS CLARIFICATION] 標記仍然存在**:
-        1. 從規格中提取所有 [NEEDS CLARIFICATION: ...] 標記
-        2. **限制檢查**: 如果存在超過 3 個標記, 僅保留 3 個最關鍵的(按範圍/安全/使用者體驗影響)併為其餘部分做出有根據的猜測
-        3. 對於每個需要的澄清(最多 3 個), 以以下格式向用戶呈現選項:
+      - **若仍有 [NEEDS CLARIFICATION] 標記**：
+        1. 從規格說明中擷取所有 [NEEDS CLARIFICATION: ...] 標記
+        2. **數量限制檢查**：若標記超過 3 個，僅保留 3 個最關鍵者（依據範圍／安全性／UX 影響），其餘部分請做合理推測
+        3. 對於每個需釐清事項（最多 3 個），以以下格式向用戶提供選項：
 
            ```markdown
-           ## 問題 [N]: [主題]
-
-           **上下文**: [引用相關規格章節]
-
-           **我們需要了解**: [來自 NEEDS CLARIFICATION 標記的具體問題]
-
-           **建議答案**:
-
-           | 選項 | 答案 | 含義 |
+           ## Question [N]: [Topic]
+           
+           **Context**: [Quote relevant spec section]
+           
+           **What we need to know**: [Specific question from NEEDS CLARIFICATION marker]
+           
+           **Suggested Answers**:
+           
+           | Option | Answer | Implications |
            |--------|--------|--------------|
-           | A      | [第一個建議答案] | [這對功能意味著什麼] |
-           | B      | [第二個建議答案] | [這對功能意味著什麼] |
-           | C      | [第三個建議答案] | [這對功能意味著什麼] |
-           | 自定義 | 提供你自己的答案 | [解釋如何提供自定義輸入] |
-
-           **你的選擇**: _[等待使用者響應]_
+           | A      | [First suggested answer] | [What this means for the feature] |
+           | B      | [Second suggested answer] | [What this means for the feature] |
+           | C      | [Third suggested answer] | [What this means for the feature] |
+           | Custom | Provide your own answer | [Explain how to provide custom input] |
+           
+           **Your choice**: _[Wait for user response]_
            ```
 
-        4. **關鍵 - 表格格式**: 確保 markdown 表格格式正確:
-           - 使用一致的間距, 管道符對齊
-           - 每個單元格內容周圍應有空格: `| 內容 |` 而不是 `|內容|`
-           - 標題分隔符必須至少有 3 個破折號: `|--------|`
-           - 測試表格在 markdown 預覽中正確渲染
-        5. 按順序編號問題(Q1、Q2、Q3 - 最多 3 個)
-        6. 在等待響應之前一起呈現所有問題
-        7. 等待使用者響應所有問題的選擇(例如, "Q1: A, Q2: 自定義 - [詳情], Q3: B")
-        8. 透過用使用者選擇或提供的答案替換每個 [NEEDS CLARIFICATION] 標記來更新規格
-        9. 在所有澄清解決後重新執行驗證
+        4. **重要 - 表格格式化**：請確保 Markdown 表格格式正確：
+           - 使用一致的間距，並對齊豎線（pipes）
+           - 每個儲存格內容前後需有空格：`| Content |` 而非 `|Content|`
+           - 標頭分隔線必須至少有 3 個橫線：`|--------|`
+           - 測試表格在 Markdown 預覽中能正確顯示
+        5. 問題請依序編號（Q1、Q2、Q3，最多 3 題）
+        6. 所有問題請一次性全部列出，然後再等待回覆
+        7. 等待用戶針對所有問題回覆其選擇（例如："Q1: A, Q2: Custom - [details], Q3: B"）
+        8. 依據用戶選擇或提供的答案，將每個 [NEEDS CLARIFICATION] 標記替換為對應內容
+        9. 所有釐清完成後，重新執行驗證
 
-   d. **更新檢查清單**: 每次驗證迭代後, 使用當前的透過/失敗狀態更新檢查清單檔案
+   d. **更新檢查清單**：每次驗證流程後，請將目前的通過/未通過狀態更新至檢查清單檔案
 
-7. 報告完成情況, 包括分支名稱、規格檔案路徑、檢查清單結果以及下一階段(`/speckit.clarify` 或 `/speckit.plan`)的準備就緒狀態.
+7. 報告完成情況，包含分支名稱、規格檔案路徑、檢查清單結果，以及是否已準備進入下一階段（`/speckit.clarify` 或 `/speckit.plan`）。
 
-**注意**: 指令碼在寫入之前建立並檢出新分支並初始化規格檔案.
+**注意：** 此腳本會建立並切換至新分支，並在寫入前初始化規格檔案。
 
-## 通用指南
+## 一般指引
 
-## 快速指南
+## 快速指引
 
-- 專注於使用者需要**什麼**和**為什麼**.
-- 避免如何實現(不涉及技術棧、API、程式碼結構).
-- 為業務利益相關者編寫, 而不是為開發者.
-- 不要建立嵌入規格中的任何檢查清單. 那將是一個單獨的命令.
+- 著重於用戶**需要什麼（WHAT）**以及**為什麼（WHY）**。
+- 避免討論如何實作（不涉及技術堆疊、API、程式碼結構）。
+- 文件對象為業務相關人員，而非開發者。
+- 請勿在規格中嵌入任何檢查清單。檢查清單將由其他指令產生。
 
-### 章節要求
+### 各區段要求
 
-- **必需章節**: 每個功能必須完成
-- **可選章節**: 僅在與功能相關時包含
-- 當章節不適用時, 完全刪除它(不要保留為 "N/A")
+- **必填區段**：每個功能皆須完成
+- **選填區段**：僅在與該功能相關時納入
+- 若某區段不適用，請直接移除（不要保留為 "N/A"）
 
-### AI 生成
+### AI 產生規格時
 
-當從使用者提示建立此規格時: 
+當根據用戶提示建立此規格時：
 
-1. **做出有根據的猜測**: 使用上下文、行業標準和常見模式來填補空白
-2. **記錄假設**: 在假設章節中記錄合理的預設值
-3. **限制澄清**: 最多 3 個 [NEEDS CLARIFICATION] 標記 - 僅用於關鍵決策: 
-   - 顯著影響功能範圍或使用者體驗
-   - 存在多個合理的解釋且有不同的含義
-   - 缺乏任何合理的預設值
-4. **優先澄清**: 範圍 > 安全/隱私 > 使用者體驗 > 技術細節
-5. **像測試人員一樣思考**: 每個模糊的需求都應該在"可測試且明確"的檢查清單專案上失敗
-6. **NEEDS CLARIFICATION 的常見領域**(僅在沒有合理預設值時): 
-   - 功能範圍和邊界(包含/排除特定用例)
-   - 使用者型別和許可權(如果可能存在多個衝突的解釋)
-   - 安全/合規要求(當具有法律/財務重要性時)
+1. **合理推測**：運用上下文、產業標準及常見模式補足資訊缺口
+2. **記錄假設**：將合理預設記錄於 Assumptions（假設）區段
+3. **限制釐清數量**：最多僅能有 3 個 [NEEDS CLARIFICATION] 標記，僅用於以下關鍵決策：
+   - 重大影響功能範圍或用戶體驗
+   - 有多種合理解釋且影響不同
+   - 完全沒有合理預設值
+4. **釐清事項優先順序**：範圍 > 安全/隱私 > 用戶體驗 > 技術細節
+5. **以測試者角度思考**：每個模糊需求都應無法通過「可測試且明確」的檢查項目
+6. **常見需釐清區域**（僅在無合理預設時）：
+   - 功能範圍與邊界（納入/排除哪些使用情境）
+   - 用戶類型與權限（若有多種合理但互斥的解釋）
+   - 安全/合規需求（具法律或財務重大影響時）
 
-**合理預設值的範例**(不要詢問這些): 
+**合理預設範例**（這些不需額外詢問）：
 
-- 資料保留: 該行業的行業標準實踐
-- 效能目標: 標準 Web/移動應用期望, 除非另有說明
-- 錯誤處理: 使用者友好的訊息和適當的回退
-- 認證方法: Web 應用的標準基於會話或 OAuth2
-- 整合模式: RESTful API, 除非另有說明
+- 資料保留：依產業標準慣例
+- 效能目標：除非特別說明，採用標準網頁/行動應用預期
+- 錯誤處理：提供友善訊息並有適當備援
+- 驗證方式：Web 應用預設為 session-based 或 OAuth2
+- 整合模式：預設為 RESTful API，除非另有說明
 
-### 成功標準指南
+### 成功標準指引
 
-成功標準必須是: 
+成功標準必須：
 
-1. **可衡量的**: 包括具體指標(時間、百分比、計數、速率)
-2. **技術無關的**: 不提及框架、語言、資料庫或工具
-3. **以使用者為中心的**: 從使用者/業務角度描述結果, 而不是系統內部
-4. **可驗證的**: 無需瞭解實現細節即可測試/驗證
+1. **可衡量**：包含具體指標（時間、百分比、數量、比率）
+2. **技術中立**：不得提及框架、語言、資料庫或工具
+3. **以用戶為中心**：從用戶/業務角度描述結果，而非系統內部細節
+4. **可驗證**：無需了解實作細節即可測試/驗證
 
-**好的範例**: 
+**良好範例**：
 
-- "使用者可以在 3 分鐘內完成結賬"
-- "系統支援 10,000 個併發使用者"
-- "95% 的搜尋在 1 秒內返回結果"
-- "任務完成率提高 40%"
+- 「用戶可於 3 分鐘內完成結帳」
+- 「系統可支援 10,000 名同時用戶」
+- 「95% 搜尋結果於 1 秒內返回」
+- 「任務完成率提升 40%」
 
-**壞的範例**(以實現為中心): 
+**不良範例**（過於實作導向）：
 
-- "API 響應時間在 200ms 以下"(太技術化, 使用"使用者立即看到結果")
-- "資料庫可以處理 1000 TPS"(實現細節, 使用面向使用者的指標)
-- "React 元件高效渲染"(框架特定)
-- "Redis 快取命中率超過 80%"(技術特定)
+- 「API 回應時間低於 200ms」（過於技術，請改為「用戶可即時看到結果」）
+- 「資料庫可處理 1000 TPS」（屬於實作細節，請改用用戶面指標）
+- 「React 元件能有效渲染」（框架限定）
+- 「Redis 快取命中率高於 80%」（技術限定）

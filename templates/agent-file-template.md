@@ -1,23 +1,28 @@
 # [PROJECT NAME] 開發指南
 
-基於所有功能計劃自動生成. 最後更新時間: [DATE]
+自所有功能規劃自動產生。最後更新時間：[DATE]
 
-## 活躍技術
-[EXTRACTED FROM ALL PLAN.MD FILES]
+## 使用中的技術
+
+[從所有 plan.md 檔案擷取]
 
 ## 專案結構
-```
+
+```text
 [ACTUAL STRUCTURE FROM PLANS]
 ```
 
-## 命令
-[ONLY COMMANDS FOR ACTIVE TECHNOLOGIES]
+## 指令
+
+[僅限使用中的技術的指令]
 
 ## 程式碼風格
-[LANGUAGE-SPECIFIC, ONLY FOR LANGUAGES IN USE]
+
+[語言專屬，僅針對實際使用的語言]
 
 ## 最近變更
-[LAST 3 FEATURES AND WHAT THEY ADDED]
 
-<!-- 手動新增內容開始 -->
-<!-- 手動新增內容結束 -->
+[最近 3 項功能與其新增內容]
+
+<!-- MANUAL ADDITIONS START -->
+<!-- MANUAL ADDITIONS END -->

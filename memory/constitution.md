@@ -1,50 +1,50 @@
-# [PROJECT_NAME] 專案章程
-<!-- 範例: Spec 章程, TaskFlow 章程等 -->
+# [PROJECT_NAME] 憲章
+<!-- 例如：Spec 憲章、TaskFlow 憲章等 -->
 
 ## 核心原則
 
 ### [PRINCIPLE_1_NAME]
-<!-- 範例: I. 庫優先 -->
+<!-- 例如：I. 以函式庫為先 (Library-First) -->
 [PRINCIPLE_1_DESCRIPTION]
-<!-- 範例: 每個功能都從獨立的庫開始; 庫必須是自包含的、可獨立測試的、有文件的; 需要明確的目的 - 不允許僅用於組織的庫 -->
+<!-- 例如：每個功能都以獨立函式庫起步；函式庫必須自給自足、可獨立測試、具備文件；需有明確目的——不允許僅供組織內部使用的函式庫 -->
 
 ### [PRINCIPLE_2_NAME]
-<!-- 範例: II. CLI 介面 -->
+<!-- 例如：II. 命令列介面 (CLI Interface) -->
 [PRINCIPLE_2_DESCRIPTION]
-<!-- 範例: 每個庫都透過 CLI 暴露功能; 文字輸入/輸出協議: stdin/args → stdout, 錯誤 → stderr; 支援 JSON + 人類可讀格式 -->
+<!-- 例如：每個函式庫都需透過 CLI 提供功能；文字輸入/輸出協定：stdin/args → stdout，錯誤 → stderr；需同時支援 JSON 與人類可讀格式 -->
 
 ### [PRINCIPLE_3_NAME]
-<!-- 範例: III. 測試優先(不可協商) -->
+<!-- 例如：III. 測試優先 (Test-First)（不可協商） -->
 [PRINCIPLE_3_DESCRIPTION]
-<!-- 範例: TDD 強制要求: 編寫測試 → 使用者批准 → 測試失敗 → 然後實現; 嚴格執行紅-綠-重構迴圈 -->
+<!-- 例如：強制採用 TDD：先撰寫測試 → 用戶確認 → 測試失敗 → 再實作；嚴格執行 Red-Green-Refactor 循環 -->
 
 ### [PRINCIPLE_4_NAME]
-<!-- 範例: IV. 整合測試 -->
+<!-- 例如：IV. 整合測試 (Integration Testing) -->
 [PRINCIPLE_4_DESCRIPTION]
-<!-- 範例: 需要整合測試的重點領域: 新庫契約測試、契約變更、服務間通訊、共享模式 -->
+<!-- 例如：需進行整合測試的重點：新函式庫契約測試、契約變更、服務間通訊、共用 schema -->
 
 ### [PRINCIPLE_5_NAME]
-<!-- 範例: V. 可觀測性, VI. 版本控制和破壞性變更, VII. 簡單性 -->
+<!-- 例如：V. 可觀測性、VI. 版本管理與重大變更 (Versioning & Breaking Changes)、VII. 簡單性 -->
 [PRINCIPLE_5_DESCRIPTION]
-<!-- 範例: 文字 I/O 確保可除錯性; 需要結構化日誌; 或者: MAJOR.MINOR.BUILD 格式; 或者: 從簡單開始, YAGNI 原則 -->
+<!-- 例如：文字 I/O 確保可除錯性；需有結構化日誌；或：採用 MAJOR.MINOR.BUILD 格式；或：保持簡單，遵循 YAGNI 原則 -->
 
 ## [SECTION_2_NAME]
-<!-- 範例: 附加約束、安全要求、效能標準等 -->
+<!-- 例如：其他限制、安全需求、效能標準等 -->
 
 [SECTION_2_CONTENT]
-<!-- 範例: 技術棧要求、合規標準、部署策略等 -->
+<!-- 例如：技術堆疊要求、合規標準、部署政策等 -->
 
 ## [SECTION_3_NAME]
-<!-- 範例: 開發工作流程、審查流程、品質門禁等 -->
+<!-- 例如：開發流程、審查流程、品質門檻等 -->
 
 [SECTION_3_CONTENT]
-<!-- 範例: 程式碼審查要求、測試門禁、部署審批流程等 -->
+<!-- 例如：程式碼審查要求、測試門檻、部署審核流程等 -->
 
-## 治理
-<!-- 範例: 章程優先於所有其他實踐; 修正需要文件化、批准、遷移計劃 -->
+## 治理機制
+<!-- 例如：本憲章優先於其他所有實踐；修訂需有文件、審核及遷移計畫 -->
 
 [GOVERNANCE_RULES]
-<!-- 範例: 所有 PR/審查必須驗證合規性; 複雜性必須得到證明; 使用 [GUIDANCE_FILE] 進行執行時開發指導 -->
+<!-- 例如：所有 PR/審查必須驗證合規性；複雜度需有正當理由；執行階段開發指引請參閱 [GUIDANCE_FILE] -->
 
-**版本**: [CONSTITUTION_VERSION] | **批准日期**: [RATIFICATION_DATE] | **最後修正**: [LAST_AMENDED_DATE]
-<!-- 範例: 版本: 2.1.1 | 批准日期: 2025-06-13 | 最後修正: 2025-07-16 -->
+**版本**： [CONSTITUTION_VERSION] | **通過日期**： [RATIFICATION_DATE] | **最後修訂**： [LAST_AMENDED_DATE]
+<!-- 例如：版本：2.1.1 | 通過日期：2025-06-13 | 最後修訂：2025-07-16 -->
